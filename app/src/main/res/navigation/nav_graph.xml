@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/recordFragment"
-        android:name="com.hungmanhnguyen.android.audiorecorder.RecordFragment"
+        android:name="com.hungmanhnguyen.android.audiorecorder.screen.record.RecordFragment"
         android:label="fragment_record"
         tools:layout="@layout/fragment_record" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/recordListFragment"
-        android:name="com.hungmanhnguyen.android.audiorecorder.RecordListFragment"
+        android:name="com.hungmanhnguyen.android.audiorecorder.screen.recordlist.RecordListFragment"
         android:label="fragment_record_list"
         tools:layout="@layout/fragment_record_list" />
 </navigation>

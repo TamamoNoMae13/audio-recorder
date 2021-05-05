@@ -1,7 +1,30 @@
 <resources>
     <string name="app_name">Audio Recorder</string>
+    <string name="guideline">Hit Mic button
+        \nto start recording!</string>
+    <string name="middleBtn">Start/Stop</string>
+    <string name="middleBtnDesc1">Stop Recording</string>
+    <string name="middleBtnDesc2">Start Recording</string>
+    <string name="settingBtn">Settings</string>
+    <string name="settingBtnDesc">Settings</string>
+    <string name="recordList">Records List</string>
+    <string name="recordListDesc">Show records list</string>
+    <string name="record_start_announce">Recording, filename: %1$s</string>
+    <string name="record_stop_announce">Recording stopped, file saved: %1$s</string>
+    <string-array name="audioCodec">
+        <item>PCM (uncompressed)</item>
+        <item>AMR Narrow-band</item>
+        <item>AMR Wide-band</item>
+        <item>AAC</item>
+        <item>VORBIS</item>
+        <item>OPUS (Android 10+ only)</item>
+    </string-array>
+    <string-array name="audioFormat">
+        <item>WAV</item>
+        <item>3GP</item>
+        <item>M4A</item>
+        <item>OGG</item>
+    </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="guideline">Hit Mic button below
-        \nto start recording!</string>
 </resources>

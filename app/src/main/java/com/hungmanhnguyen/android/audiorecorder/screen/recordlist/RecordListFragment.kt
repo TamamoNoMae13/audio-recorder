@@ -1,12 +1,11 @@
-package com.hungmanhnguyen.android.audiorecorder
+package com.hungmanhnguyen.android.audiorecorder.screen.recordlist
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import com.hungmanhnguyen.android.audiorecorder.databinding.FragmentRecordListBinding
+import com.hungmanhnguyen.android.audiorecorder.R
 
 class RecordListFragment : Fragment() {
 
