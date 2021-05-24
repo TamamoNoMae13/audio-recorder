@@ -42,7 +42,7 @@ class RecordViewModel : ViewModel() {
         _isRecording.value = false
     }
 
-    fun setAudioCodec(codec: String) {
-        TODO("Not yet implemented.")
-    }
+//    fun setAudioCodec(codec: String) {
+//        TODO("Not yet implemented.")
+//    }
 }
