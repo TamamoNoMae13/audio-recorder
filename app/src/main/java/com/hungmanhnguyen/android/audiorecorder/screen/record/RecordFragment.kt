@@ -108,6 +108,7 @@ class RecordFragment : Fragment() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        // super.registerForActivityResult()
         if (requestCode == 111 && grantResults[0] == PM_PERM_GRANTED)
             viewModel.onPermAllowed()
     }

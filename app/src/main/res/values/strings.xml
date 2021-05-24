@@ -3,14 +3,15 @@
     <string name="guideline">Hit Mic button
         \nto start recording!</string>
     <string name="middleBtn">Start/Stop</string>
-    <string name="middleBtnDesc1">Stop Recording</string>
-    <string name="middleBtnDesc2">Start Recording</string>
     <string name="settingBtn">Settings</string>
-    <string name="settingBtnDesc">Settings</string>
     <string name="recordList">Records List</string>
-    <string name="recordListDesc">Show records list</string>
+    <string name="buttonImgDesc">Just an icon</string>
     <string name="record_start_announce">Recording, filename: %1$s</string>
     <string name="record_stop_announce">Recording stopped, file saved: %1$s</string>
+    <string name="media_player">Media Player</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="not_playing">Not Playing</string>
+    <string name="filename">File Name</string>
     <string-array name="audioCodec">
         <item>PCM (uncompressed)</item>
         <item>AMR Narrow-band</item>
