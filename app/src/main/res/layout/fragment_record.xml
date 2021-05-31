@@ -60,6 +60,8 @@
             android:layout_width="0dp"
             android:layout_height="120dp"
             android:contentDescription="@string/buttonImgDesc"
+            android:paddingStart="16dp"
+            android:paddingEnd="0dp"
             android:src="@drawable/ic_record_btn_start"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="1"

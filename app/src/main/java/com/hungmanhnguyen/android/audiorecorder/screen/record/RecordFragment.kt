@@ -143,7 +143,7 @@ class RecordFragment : Fragment() {
         var now = Date()
 
         // Get app external path
-        val recPath = requireActivity().getExternalFilesDir("/")?.absolutePath
+        val recPath: String = requireActivity().getExternalFilesDir("/")!!.absolutePath
 
         // Formatting filename from date + extension
         recFile = "Record_" + formatter.format(now) + ".3gp"
