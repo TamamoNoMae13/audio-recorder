@@ -48,7 +48,6 @@ class RecordFragment : Fragment() {
         /** View & Data Binding + declare ViewModel */
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_record, container, false)
         viewModel = ViewModelProvider(this).get(RecordViewModel::class.java)
-        // binding.recordViewModel = viewModel
 
         /** OnClick Handlers */
         // Record Button
@@ -109,7 +108,7 @@ class RecordFragment : Fragment() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         // super.registerForActivityResult()
-        if (requestCode == 111 && grantResults[0] == PM_PERM_GRANTED)
+        if (requestCode == 101 && grantResults[0] == PM_PERM_GRANTED)
             viewModel.onPermAllowed()
     }
 
@@ -124,7 +123,7 @@ class RecordFragment : Fragment() {
 
         // MediaRecorder lifecycles
         mr!!.stop()
-        mr!!.reset()
+//        mr!!.reset()
         mr!!.release()
 
         // Destroy old MediaRecorder
@@ -140,13 +139,12 @@ class RecordFragment : Fragment() {
 
         // Get Date
         val formatter = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.UK)
-        var now = Date()
 
         // Get app external path
         val recPath: String = requireActivity().getExternalFilesDir("/")!!.absolutePath
 
         // Formatting filename from date + extension
-        recFile = "Record_" + formatter.format(now) + ".3gp"
+        recFile = "Record_" + formatter.format(Date()) + ".3gp"
 
         // Change the announcement text
         binding.announcement.text = getString(R.string.record_start_announce, recFile)
@@ -182,7 +180,7 @@ class RecordFragment : Fragment() {
             ||
             ActivityCompat.checkSelfPermission(requireContext(), WRITE_PERM) != PM_PERM_GRANTED
         ) {
-            requestPermissions(arrayOf(REC_PERM, WRITE_PERM), 111)
+            requestPermissions(arrayOf(REC_PERM, WRITE_PERM), 101)
             return false
         }
         return true

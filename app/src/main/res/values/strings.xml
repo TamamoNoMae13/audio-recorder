@@ -1,19 +1,29 @@
 <resources>
-    <string name="dummy">Example</string>
     <string name="app_name">Audio Recorder</string>
+
+    <string name="dummy">Example</string>
+    <string name="buttonImgDesc">Just an icon</string>
+
     <string name="guideline">Hit Mic button
         \nto start recording!</string>
-    <string name="middleBtn">Start/Stop</string>
+
     <string name="settingBtn">Settings</string>
+    <string name="middleBtn">Start/Stop</string>
     <string name="recordList">Records List</string>
-    <string name="buttonImgDesc">Just an icon</string>
+
+    <string name="media_player">Media Player</string>
+
+    <string name="not_playing">Not Playing</string>
+    <string name="playing">Playing</string>
+    <string name="finished">Finished</string>
+    <string name="stopped">Stopped</string>
+
+    <string name="filename">File Name</string>
+
     <string name="record_start_announce">Recording, filename: %1$s</string>
     <string name="record_stop_announce">Recording stopped, file saved: %1$s</string>
-    <string name="media_player">Media Player</string>
-    <string name="now_playing">Now Playing</string>
-    <string name="not_playing">Not Playing</string>
-    <string name="filename">File Name</string>
-    <string-array name="audioCodec">
+
+    <string-array name="codec">
         <item>PCM (uncompressed)</item>
         <item>AMR Narrow-band</item>
         <item>AMR Wide-band</item>
@@ -21,12 +31,12 @@
         <item>VORBIS</item>
         <item>OPUS (Android 10+ only)</item>
     </string-array>
-    <string-array name="audioFormat">
+
+    <string-array name="format">
         <item>WAV</item>
         <item>3GP</item>
         <item>M4A</item>
+        <item>WEBM</item>
         <item>OGG</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

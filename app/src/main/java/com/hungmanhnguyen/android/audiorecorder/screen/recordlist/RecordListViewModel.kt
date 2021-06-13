@@ -12,7 +12,7 @@ class RecordListViewModel : ViewModel() {
         get() = _permAllowed
 
     private val _isPlaying = MutableLiveData<Boolean>()
-    val isRecording: LiveData<Boolean>
+    val isPlaying: LiveData<Boolean>
         get() = _isPlaying
 
     init {
@@ -35,6 +35,10 @@ class RecordListViewModel : ViewModel() {
     }
 
     fun onPlayingStop() {
+        _isPlaying.value = false
+    }
+
+    fun onPlayingPause() {
         _isPlaying.value = false
     }
 }
