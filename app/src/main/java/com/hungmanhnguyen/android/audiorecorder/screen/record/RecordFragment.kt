@@ -1,26 +1,26 @@
 package com.hungmanhnguyen.android.audiorecorder.screen.record
 
-import android.content.pm.PackageManager
-import android.os.Bundle
 import android.Manifest
+import android.app.AlertDialog
+import android.content.pm.PackageManager
 import android.icu.text.SimpleDateFormat
 import android.media.MediaRecorder
+import android.os.Bundle
 import android.os.SystemClock
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.hungmanhnguyen.android.audiorecorder.R
 import com.hungmanhnguyen.android.audiorecorder.databinding.FragmentRecordBinding
-import java.util.Date
-import java.util.Locale
 import java.io.IOException
+import java.util.*
 
 class RecordFragment : Fragment() {
 
@@ -66,14 +66,28 @@ class RecordFragment : Fragment() {
         }
 
         // Settings Button
-//        binding.settingBtn.setOnClickListener {
-//
-//        }
-
+        binding.settingBtn.setOnClickListener(
+            Navigation.createNavigateOnClickListener(R.id.action_recordFragment_to_settingsFragment)
+        )
         // Record List Button
-        binding.recordListBtn.setOnClickListener(
+        binding.recordListBtn.setOnClickListener (
             Navigation.createNavigateOnClickListener(R.id.action_recordFragment_to_recordListFragment)
         )
+//        binding.recordListBtn.setOnClickListener {
+//            if (viewModel.isRecording.value == true) {
+//                val alertDialog = AlertDialog.Builder(context)
+//                alertDialog.setPositiveButton("OKAY") { dialog, which ->
+//                    Navigation.createNavigateOnClickListener(R.id.action_recordFragment_to_recordListFragment)
+//                    viewModel.onRecordingStop()
+//                }
+//                alertDialog.setNegativeButton("CANCEL", null)
+//                alertDialog.setTitle("Audio is still recording")
+//                alertDialog.setMessage("Are you sure, you want to stop the recording?")
+//                alertDialog.create().show()
+//            } else {
+//                Navigation.createNavigateOnClickListener(R.id.action_recordFragment_to_recordListFragment)
+//            }
+//        }
 
         return binding.root
     }
@@ -88,16 +102,7 @@ class RecordFragment : Fragment() {
     // Fix later, because app crash when navigating to other fragments
 //    override fun onStop() {
 //        super.onStop()
-//
-//        // MediaRecorder lifecycles
-//        mr!!.stop()
-//        mr!!.reset()
-//        mr!!.release()
-//
-//        // Destroy old MediaRecorder
-//        mr = null
-//
-//        viewModel.onRecordingStop()
+//        if(viewModel.isRecording.value == true) stopRecording()
 //    }
 
     /** Change boolean to true after perm granted */
@@ -123,7 +128,7 @@ class RecordFragment : Fragment() {
 
         // MediaRecorder lifecycles
         mr!!.stop()
-//        mr!!.reset()
+        mr!!.reset()
         mr!!.release()
 
         // Destroy old MediaRecorder

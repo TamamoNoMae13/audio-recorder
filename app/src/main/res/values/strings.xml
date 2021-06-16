@@ -23,20 +23,22 @@
     <string name="record_start_announce">Recording, filename: %1$s</string>
     <string name="record_stop_announce">Recording stopped, file saved: %1$s</string>
 
-    <string-array name="codec">
-        <item>PCM (uncompressed)</item>
-        <item>AMR Narrow-band</item>
-        <item>AMR Wide-band</item>
-        <item>AAC</item>
-        <item>VORBIS</item>
-        <item>OPUS (Android 10+ only)</item>
-    </string-array>
+    <string name="setting_menu">Settings Menu</string>
+    <string name="format">Format</string>
+    <string name="codec">Codec</string>
+    <string name="sample_rate">Sampling Rate</string>
 
-    <string-array name="format">
-        <item>WAV</item>
-        <item>3GP</item>
-        <item>M4A</item>
-        <item>WEBM</item>
-        <item>OGG</item>
-    </string-array>
+    <string name="pcm">PCM</string>
+    <string name="amr_nb">AMR-NB</string>
+    <string name="amr_wb">AMR-WB</string>
+    <string name="aac">AAC</string>
+    <string name="vorbis">Vorbis</string>
+    <string name="opus">Opus</string>
+
+    <string name="wav">WAV</string>
+    <string name="m4a">M4A</string>
+    <string name="_3gp">3GP</string>
+    <string name="webm">WEBM</string>
+    <string name="ogg">OGG</string>
+    <string name="oga">OGA</string>
 </resources>
