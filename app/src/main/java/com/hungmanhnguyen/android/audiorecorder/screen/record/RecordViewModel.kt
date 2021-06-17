@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import java.io.File
 
 class RecordViewModel : ViewModel() {
 
@@ -15,9 +16,25 @@ class RecordViewModel : ViewModel() {
     val isRecording: LiveData<Boolean>
         get() = _isRecording
 
-//    private val _audioCodec = MutableLiveData<String>()
-//    val audioCodec: LiveData<String>
-//        get() = _audioCodec
+//    private val _isPcm = MutableLiveData<Boolean>()
+//    val isPcm: LiveData<Boolean>
+//        get() = _isPcm
+
+    private val _audioCodec = MutableLiveData<Int>()
+    val audioCodec: LiveData<Int>
+        get() = _audioCodec
+
+    private val _channel = MutableLiveData<Int>()
+    val channel: LiveData<Int>
+        get() = _channel
+
+    private val _sampleRate = MutableLiveData<Int>()
+    val sampleRate: LiveData<Int>
+        get() = _sampleRate
+
+    private val _bitRate = MutableLiveData<Int>()
+    val bitRate: LiveData<Int>
+        get() = _bitRate
 
     init {
         Log.i("RecordVM", "RecordVM created")
@@ -42,7 +59,32 @@ class RecordViewModel : ViewModel() {
         _isRecording.value = false
     }
 
-//    fun setAudioCodec(codec: String) {
-//        TODO("Not yet implemented.")
+//    fun onEnablePcm() {
+//        _isPcm.value = true
 //    }
+//
+//    fun onDisablePcm() {
+//        _isPcm.value = false
+//    }
+    fun setAudioCodec(codec: Int) {
+        _audioCodec.value = codec
+    }
+
+    fun setChannel(channel: Int) {
+        _channel.value = channel
+    }
+
+    fun setSampleRate(sampleRate: Int) {
+        _sampleRate.value = sampleRate
+    }
+
+    fun setBitRate(bitRate: Int) {
+        _bitRate.value = bitRate
+    }
+
+    /** Read config file */
+    private fun readConfig(configFile: File) {
+        TODO("Chua lam gi")
+    }
+
 }

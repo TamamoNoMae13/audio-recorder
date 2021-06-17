@@ -10,6 +10,7 @@
     <string name="settingBtn">Settings</string>
     <string name="middleBtn">Start/Stop</string>
     <string name="recordList">Records List</string>
+    <string name="saveBtn">Save</string>
 
     <string name="media_player">Media Player</string>
 
@@ -27,6 +28,8 @@
     <string name="format">Format</string>
     <string name="codec">Codec</string>
     <string name="sample_rate">Sampling Rate</string>
+    <string name="bitrate">Bit Rate</string>
+    <string name="channels">Channels</string>
 
     <string name="pcm">PCM</string>
     <string name="amr_nb">AMR-NB</string>
@@ -37,8 +40,45 @@
 
     <string name="wav">WAV</string>
     <string name="m4a">M4A</string>
-    <string name="_3gp">3GP</string>
+    <string name="three_gp">3GP</string>
     <string name="webm">WEBM</string>
     <string name="ogg">OGG</string>
-    <string name="oga">OGA</string>
+
+    <string name="eightKHz">8kHz</string>
+    <string name="elevenKHz">11025Hz</string>
+    <string name="sixteenKHz">16kHz</string>
+    <string name="twenty_twoKHz">22050Hz</string>
+    <string name="thirty_twoKHz">32kHz</string>
+    <string name="forty_fourKHz">44.1kHz</string>
+    <string name="forty_eightKHz">48kHz</string>
+
+    <string name="mono">Mono</string>
+    <string name="stereo">Stereo</string>
+
+    <string name="thirty_two_kbps">32kbps</string>
+    <string name="forty_eight_kbps">48kbps</string>
+    <string name="sixty_four_kbps">64kbps</string>
+    <string name="ninety_six_kbps">96kbps</string>
+    <string name="hundred_twelve_kbps">112kbps</string>
+    <string name="hundred_twenty_eights_kbps">128kbps</string>
+    <string name="hundred_sixty_kbps">160kbps</string>
+    <string name="hundred_ninety_two_kbps">192kbps</string>
+    <string name="two_hundred_twenty_four_kbps">224kbps</string>
+    <string name="two_hundred_fifty_six_kbps">256kbps</string>
+    <string name="three_hundred_twenty_kbps">320kbps</string>
+    <string name="five_hundred_eleven_kbps">510kbps</string>
+
+    <string name="pcm_desc">PCM: Uncompressed audio data codec. Best quality, however, takes up a lot of space. Use only when needed.</string>
+    <string name="aac_desc">AAC: Decent quality with small file size. Recommend.</string>
+    <string name="amr_nb_desc">AMR_NB: Good codec for voice recording, however most telecommunication services provide better quality, use if you need to save space.</string>
+    <string name="amr_wb_desc">AMR_WB: Provide wider bandwidth than AMR_NB, result in slightly better quality with a little bit increase in file size.</string>
+    <string name="vorbis_desc">Vorbis: An audio codec with good efficiency, providing better quality than AAC with the same given Bit Rate. However, it doesn\'t compatible with all devices.</string>
+    <string name="opus_desc">Opus: A superior lossy codec, providing way better quality than AAC and Vorbis with the same given Bit Rate. However, it doesn\'t compatible with all devices.</string>
+
+    <string name="other_desc">Higher bitrate gives better quality, with an increase in file size.
+        \nHigher sample rate makes the audio sound more continuously, while lower sample rate makes the audio sound more discrete.
+        \nThe standard nowadays is 44.1kHz at minimum, unless you only use this to record voice.</string>
+
+    <string name="avg_file_size">User settings: %1$s, %2$s, %3$d Hz, %4$d kbps.
+        \nExpected file size per minute: %5$s.</string>
 </resources>

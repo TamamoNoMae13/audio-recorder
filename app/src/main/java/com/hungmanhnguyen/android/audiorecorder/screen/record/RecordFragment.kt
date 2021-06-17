@@ -19,8 +19,30 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.hungmanhnguyen.android.audiorecorder.R
 import com.hungmanhnguyen.android.audiorecorder.databinding.FragmentRecordBinding
+import java.io.File
 import java.io.IOException
 import java.util.*
+
+/** Define constants */
+private const val REC_PERM = Manifest.permission.RECORD_AUDIO
+private const val WRITE_PERM = Manifest.permission.WRITE_EXTERNAL_STORAGE
+private const val READ_PERM = Manifest.permission.READ_EXTERNAL_STORAGE
+private val PM_PERM_GRANTED = PackageManager.PERMISSION_GRANTED
+
+/** Define formats */
+// private const val WAV = "Not yet"
+private const val M4A = MediaRecorder.OutputFormat.MPEG_4
+private const val THREE_GP = MediaRecorder.OutputFormat.THREE_GPP
+private const val WEBM = MediaRecorder.OutputFormat.WEBM
+// private const val OGG = MediaRecorder.OutputFormat.OGG
+
+/** Define codecs */
+// private const val WAV = "Not yet"
+private const val AAC = MediaRecorder.AudioEncoder.AAC
+private const val AMR_NB = MediaRecorder.AudioEncoder.AMR_NB
+private const val AMR_WB = MediaRecorder.AudioEncoder.AMR_WB
+private const val VORBIS = MediaRecorder.AudioEncoder.VORBIS
+// private const val OPUS = MediaRecorder.OutputFormat.OPUS
 
 class RecordFragment : Fragment() {
 
@@ -31,12 +53,6 @@ class RecordFragment : Fragment() {
     /** Define variables */
     private var recFile: String? = null
     private var mr: MediaRecorder? = null
-
-    /** Define constant */
-    private val REC_PERM = Manifest.permission.RECORD_AUDIO
-    private val WRITE_PERM = Manifest.permission.WRITE_EXTERNAL_STORAGE
-//    private val READ_PERM = Manifest.permission.READ_EXTERNAL_STORAGE
-    private val PM_PERM_GRANTED = PackageManager.PERMISSION_GRANTED
 
     /** Setting up when init and create View */
     override fun onCreateView(
@@ -60,34 +76,26 @@ class RecordFragment : Fragment() {
                 if (viewModel.permAllowed.value == true) {
                     viewModel.onRecordingStart()
                     binding.recordBtn.setImageResource(R.drawable.ic_record_btn_stop) // change to Stop image
-                    startRecording()
-                } else Toast.makeText(requireContext(), "No permission", Toast.LENGTH_SHORT).show()
+                    startRecording(viewModel.audioCodec.value!!,viewModel.channel.value!!,viewModel.sampleRate.value!!,viewModel.bitRate.value!!)
+                } else Toast.makeText(context, "No permission", Toast.LENGTH_SHORT).show()
             }
         }
 
         // Settings Button
-        binding.settingBtn.setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.action_recordFragment_to_settingsFragment)
-        )
+        binding.settingBtn.setOnClickListener {
+//            if(viewModel.isRecording.value == true) {
+//                announceIsRecord()
+//            } else
+                Navigation.createNavigateOnClickListener(R.id.action_recordFragment_to_settingsFragment)
+        }
         // Record List Button
-        binding.recordListBtn.setOnClickListener (
-            Navigation.createNavigateOnClickListener(R.id.action_recordFragment_to_recordListFragment)
-        )
-//        binding.recordListBtn.setOnClickListener {
-//            if (viewModel.isRecording.value == true) {
-//                val alertDialog = AlertDialog.Builder(context)
-//                alertDialog.setPositiveButton("OKAY") { dialog, which ->
-//                    Navigation.createNavigateOnClickListener(R.id.action_recordFragment_to_recordListFragment)
-//                    viewModel.onRecordingStop()
-//                }
-//                alertDialog.setNegativeButton("CANCEL", null)
-//                alertDialog.setTitle("Audio is still recording")
-//                alertDialog.setMessage("Are you sure, you want to stop the recording?")
-//                alertDialog.create().show()
-//            } else {
-//                Navigation.createNavigateOnClickListener(R.id.action_recordFragment_to_recordListFragment)
-//            }
-//        }
+        binding.recordListBtn.setOnClickListener {
+            if(viewModel.isRecording.value == true) {
+                announceIsRecord()
+            } else Navigation.createNavigateOnClickListener(R.id.action_recordFragment_to_recordListFragment)
+        }
+
+        binding.recordListBtn.isEnabled = false // Disable due to bug.
 
         return binding.root
     }
@@ -97,13 +105,6 @@ class RecordFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         if (checkPerm()) viewModel.onPermAllowed()
     }
-
-    /** Lifecycle methods */
-    // Fix later, because app crash when navigating to other fragments
-//    override fun onStop() {
-//        super.onStop()
-//        if(viewModel.isRecording.value == true) stopRecording()
-//    }
 
     /** Change boolean to true after perm granted */
     override fun onRequestPermissionsResult(
@@ -115,6 +116,11 @@ class RecordFragment : Fragment() {
         // super.registerForActivityResult()
         if (requestCode == 101 && grantResults[0] == PM_PERM_GRANTED)
             viewModel.onPermAllowed()
+    }
+
+    /** Announce when clicking other buttons while recording */
+    private fun announceIsRecord() {
+        Toast.makeText(context,"Stop recording first",Toast.LENGTH_SHORT).show()
     }
 
     /** Stop recording */
@@ -136,7 +142,49 @@ class RecordFragment : Fragment() {
     }
 
     /** Start recording */
-    private fun startRecording() {
+    private fun startRecording(codec: Int, channel: Int, sampleRate: Int, bitRate: Int) {
+        // Params for recording preset
+        var recCodec: Int
+        var recFormat: Int
+        var ext: String
+
+        // Set preset from indices in radios
+        when (codec) {
+//            0 -> {
+//                recCodec = PCM_16BIT
+//                ext = ".wav"
+//            }
+            1 -> {
+                recCodec = AAC
+                recFormat = M4A
+                ext = ".m4a"
+            }
+            2 -> {
+                recCodec = AMR_NB
+                recFormat = THREE_GP
+                ext = ".3gp"
+            }
+            3 -> {
+                recCodec = AMR_WB
+                recFormat = THREE_GP
+                ext = ".3gp"
+            }
+            4 -> {
+                recCodec = VORBIS
+                recFormat = WEBM
+                ext = ".webm"
+            }
+//            5 -> {
+//                recCodec = OPUS
+//                recFormat = OGG
+//                ext = ".ogg"
+//            }
+            else -> {
+                recCodec = AMR_NB
+                recFormat = THREE_GP
+                ext = ".3gp"
+            }
+        }
 
         // Start timer from 0
         binding.recordTimer.base = SystemClock.elapsedRealtime()
@@ -146,10 +194,10 @@ class RecordFragment : Fragment() {
         val formatter = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.UK)
 
         // Get app external path
-        val recPath: String = requireActivity().getExternalFilesDir("/")!!.absolutePath
+        val recPath: String = requireContext().getExternalFilesDir("/")!!.absolutePath
 
         // Formatting filename from date + extension
-        recFile = "Record_" + formatter.format(Date()) + ".3gp"
+        recFile = "Record_" + formatter.format(Date()) + ext
 
         // Change the announcement text
         binding.announcement.text = getString(R.string.record_start_announce, recFile)
@@ -162,8 +210,11 @@ class RecordFragment : Fragment() {
         mr!!.setAudioSource(MediaRecorder.AudioSource.MIC)
 
         // keeps configuring sources
-        mr!!.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
-        mr!!.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
+        mr!!.setOutputFormat(recFormat)
+        mr!!.setAudioEncoder(recCodec)
+//        mr!!.setAudioChannels(channel)
+//        mr!!.setAudioSamplingRate(44100)
+//        mr!!.setAudioEncodingBitRate(128*1000)
         mr!!.setOutputFile("$recPath/$recFile")
 
         // Prepare, then start if no error occurs, MediaRecorder Lifecycles
@@ -189,5 +240,15 @@ class RecordFragment : Fragment() {
             return false
         }
         return true
+    }
+
+    /** Lifecycle Methods */
+    override fun onStart() {
+        super.onStart()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        if(viewModel.isRecording.value == true) stopRecording()
     }
 }

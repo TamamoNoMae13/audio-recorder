@@ -8,10 +8,11 @@
     </style>
 
     <style name="buttonStyle">
-        <item name="android:layout_width">64dp</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:fontFamily">@font/source_sans_pro_bold</item>
+        <item name="textAllCaps">false</item>
     </style>
 
     <style name="playerSheet_textStyle">
