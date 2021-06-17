@@ -40,6 +40,10 @@ class RecordViewModel : ViewModel() {
         Log.i("RecordVM", "RecordVM created")
         _permAllowed.value = false
         _isRecording.value = false
+        _audioCodec.value = 1
+        _channel.value = 2
+        _sampleRate.value = 44100
+        _bitRate.value = 128
     }
 
     override fun onCleared() {

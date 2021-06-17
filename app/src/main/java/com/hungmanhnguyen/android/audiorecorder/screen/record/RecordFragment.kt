@@ -1,7 +1,6 @@
 package com.hungmanhnguyen.android.audiorecorder.screen.record
 
 import android.Manifest
-import android.app.AlertDialog
 import android.content.pm.PackageManager
 import android.icu.text.SimpleDateFormat
 import android.media.MediaRecorder
@@ -30,19 +29,19 @@ private const val READ_PERM = Manifest.permission.READ_EXTERNAL_STORAGE
 private val PM_PERM_GRANTED = PackageManager.PERMISSION_GRANTED
 
 /** Define formats */
-// private const val WAV = "Not yet"
+//private const val WAV = "Not yet"
 private const val M4A = MediaRecorder.OutputFormat.MPEG_4
 private const val THREE_GP = MediaRecorder.OutputFormat.THREE_GPP
-private const val WEBM = MediaRecorder.OutputFormat.WEBM
-// private const val OGG = MediaRecorder.OutputFormat.OGG
+//private const val WEBM = MediaRecorder.OutputFormat.WEBM
+//private const val OGG = MediaRecorder.OutputFormat.OGG
 
 /** Define codecs */
-// private const val WAV = "Not yet"
+//private const val WAV = "Not yet"
 private const val AAC = MediaRecorder.AudioEncoder.AAC
 private const val AMR_NB = MediaRecorder.AudioEncoder.AMR_NB
 private const val AMR_WB = MediaRecorder.AudioEncoder.AMR_WB
-private const val VORBIS = MediaRecorder.AudioEncoder.VORBIS
-// private const val OPUS = MediaRecorder.OutputFormat.OPUS
+//private const val VORBIS = MediaRecorder.AudioEncoder.VORBIS
+//private const val OPUS = MediaRecorder.OutputFormat.OPUS
 
 class RecordFragment : Fragment() {
 
@@ -83,19 +82,20 @@ class RecordFragment : Fragment() {
 
         // Settings Button
         binding.settingBtn.setOnClickListener {
+            Navigation.createNavigateOnClickListener(R.id.action_recordFragment_to_settingsFragment)
+        }
+//        binding.settingBtn.setOnClickListener {
 //            if(viewModel.isRecording.value == true) {
 //                announceIsRecord()
 //            } else
-                Navigation.createNavigateOnClickListener(R.id.action_recordFragment_to_settingsFragment)
-        }
+//                Navigation.createNavigateOnClickListener(R.id.action_recordFragment_to_settingsFragment)
+//        }
         // Record List Button
         binding.recordListBtn.setOnClickListener {
             if(viewModel.isRecording.value == true) {
                 announceIsRecord()
             } else Navigation.createNavigateOnClickListener(R.id.action_recordFragment_to_recordListFragment)
         }
-
-        binding.recordListBtn.isEnabled = false // Disable due to bug.
 
         return binding.root
     }
@@ -169,11 +169,11 @@ class RecordFragment : Fragment() {
                 recFormat = THREE_GP
                 ext = ".3gp"
             }
-            4 -> {
-                recCodec = VORBIS
-                recFormat = WEBM
-                ext = ".webm"
-            }
+//            4 -> {
+//                recCodec = VORBIS
+//                recFormat = WEBM
+//                ext = ".webm"
+//            }
 //            5 -> {
 //                recCodec = OPUS
 //                recFormat = OGG
@@ -194,10 +194,10 @@ class RecordFragment : Fragment() {
         val formatter = SimpleDateFormat("yyyy_MM_dd_HH_mm_ss", Locale.UK)
 
         // Get app external path
-        val recPath: String = requireContext().getExternalFilesDir("/")!!.absolutePath
+        val recPath: String = requireActivity().getExternalFilesDir("/")!!.absolutePath
 
         // Formatting filename from date + extension
-        recFile = "Record_" + formatter.format(Date()) + ext
+        recFile = "Record_" + formatter.format(Date()) + ext //".3gp" // ext
 
         // Change the announcement text
         binding.announcement.text = getString(R.string.record_start_announce, recFile)
@@ -212,9 +212,9 @@ class RecordFragment : Fragment() {
         // keeps configuring sources
         mr!!.setOutputFormat(recFormat)
         mr!!.setAudioEncoder(recCodec)
-//        mr!!.setAudioChannels(channel)
-//        mr!!.setAudioSamplingRate(44100)
-//        mr!!.setAudioEncodingBitRate(128*1000)
+        mr!!.setAudioChannels(channel)
+        mr!!.setAudioSamplingRate(sampleRate)
+        mr!!.setAudioEncodingBitRate(bitRate*1000)
         mr!!.setOutputFile("$recPath/$recFile")
 
         // Prepare, then start if no error occurs, MediaRecorder Lifecycles
@@ -243,9 +243,9 @@ class RecordFragment : Fragment() {
     }
 
     /** Lifecycle Methods */
-    override fun onStart() {
-        super.onStart()
-    }
+//    override fun onStart() {
+//        super.onStart()
+//    }
 
     override fun onStop() {
         super.onStop()

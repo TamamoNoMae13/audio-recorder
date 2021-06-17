@@ -29,37 +29,41 @@ class SettingsFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false)
         viewModel = ViewModelProvider(this).get(SettingsViewModel::class.java)
 
-//        /** Radio OnClick Handlers */
-//        binding.codecRadio.setOnCheckedChangeListener { _, _ ->
-//            codecOnClicked()
-//            updateConfigOnCodecSelected()
-//            updateDesc()
-//        }
-//
-//        binding.channelRadio.setOnCheckedChangeListener { _, _ ->
-//            updateConfigOnChannelSelected()
-//            updateDesc()
-//        }
-//
-//        binding.sampleRateRadio.setOnCheckedChangeListener { _, _ ->
-//            updateConfigOnSampleRateSelected()
-//            updateDesc()
-//        }
-//
-//        binding.bitrateRadio.setOnCheckedChangeListener { _, _ ->
-//            updateConfigOnBitRateSelected()
-//            updateDesc()
-//        }
-//
-//        binding.saveSettingBtn.setOnClickListener {
-//            updateConfigOnSelected()
-//            val savePath: String = requireContext().getExternalFilesDir("/")!!.absolutePath
-//            val cfgDir = File(savePath, "cfg")
-//            val cfgFile = File(cfgDir, "settings.cfg")
-//            viewModel.saveConfigToFile(cfgFile)
-//        }
-
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        /** Radio OnClick Handlers */
+        binding.codecRadio.setOnCheckedChangeListener { _, _ ->
+            codecOnClicked()
+            updateConfigOnCodecSelected()
+            updateDesc()
+        }
+
+        binding.channelRadio.setOnCheckedChangeListener { _, _ ->
+            updateConfigOnChannelSelected()
+            updateDesc()
+        }
+
+        binding.sampleRateRadio.setOnCheckedChangeListener { _, _ ->
+            updateConfigOnSampleRateSelected()
+            updateDesc()
+        }
+
+        binding.bitrateRadio.setOnCheckedChangeListener { _, _ ->
+            updateConfigOnBitRateSelected()
+            updateDesc()
+        }
+
+        binding.saveSettingBtn.setOnClickListener {
+            updateConfigOnSelected()
+            val savePath: String = requireActivity().getExternalFilesDir("/")!!.absolutePath
+            val cfgDir = File(savePath, "cfg")
+            val cfgFile = File(cfgDir, "settings.cfg")
+            viewModel.saveConfigToFile(cfgFile)
+        }
     }
 
     private fun updateDesc() {
@@ -69,7 +73,7 @@ class SettingsFragment : Fragment() {
             1 -> binding.codecDesc.text = getString(R.string.aac_desc)
             2 -> binding.codecDesc.text = getString(R.string.amr_nb_desc)
             3 -> binding.codecDesc.text = getString(R.string.amr_wb_desc)
-            4 -> binding.codecDesc.text = getString(R.string.vorbis_desc)
+//            4 -> binding.codecDesc.text = getString(R.string.vorbis_desc)
 //            5 -> binding.codecDesc.text = getString(R.string.opus_desc)
         }
         val format: String = when (viewModel.audioCodec.value) {
@@ -77,7 +81,7 @@ class SettingsFragment : Fragment() {
             1 -> "AAC"
             2 -> "3GP"
             3 -> "3GP"
-            4 -> "Vorbis"
+//            4 -> "Vorbis"
 //            5 -> "Opus"
             else -> ""
         }
@@ -104,7 +108,7 @@ class SettingsFragment : Fragment() {
             1 -> binding.formatName.text = getString(R.string.aac)
             2 -> binding.formatName.text = getString(R.string.three_gp)
             3 -> binding.formatName.text = getString(R.string.three_gp)
-            4 -> binding.formatName.text = getString(R.string.webm)
+//            4 -> binding.formatName.text = getString(R.string.webm)
 //            5 -> binding.formatName.text = getString(R.string.ogg)
         }
     }
@@ -138,7 +142,7 @@ class SettingsFragment : Fragment() {
             R.id.aac_btn -> viewModel.setAudioCodec(1)
             R.id.amr_nb_btn -> viewModel.setAudioCodec(2)
             R.id.amr_wb_btn -> viewModel.setAudioCodec(3)
-            R.id.vorbis_btn -> viewModel.setAudioCodec(4)
+//            R.id.vorbis_btn -> viewModel.setAudioCodec(4)
 //            R.id.opus_btn -> viewModel.setAudioCodec(5)
         }
         if (viewModel.audioCodec.value == 2 || viewModel.audioCodec.value == 3) {
@@ -174,9 +178,9 @@ class SettingsFragment : Fragment() {
         when (binding.bitrateRadio.checkedRadioButtonId) {
 //            R.id.bit_32kbps -> viewModel.setBitRate(32)
 //            R.id.bit_48kbps -> viewModel.setBitRate(48)
-            R.id.bit_64kbps -> viewModel.setBitRate(64)
-            R.id.bit_96kbps -> viewModel.setBitRate(96)
-            R.id.bit_112kbps -> viewModel.setBitRate(112)
+//            R.id.bit_64kbps -> viewModel.setBitRate(64)
+//            R.id.bit_96kbps -> viewModel.setBitRate(96)
+//            R.id.bit_112kbps -> viewModel.setBitRate(112)
             R.id.bit_128kbps -> viewModel.setBitRate(128)
             R.id.bit_160kbps -> viewModel.setBitRate(160)
             R.id.bit_192kbps -> viewModel.setBitRate(192)
@@ -220,31 +224,32 @@ class SettingsFragment : Fragment() {
             binding.bit192kbps.visibility = View.VISIBLE
             binding.bit224kbps.visibility = View.VISIBLE
             binding.bit256kbps.visibility = View.VISIBLE
-        } else if (binding.vorbisBtn.isChecked) {
-            hideAll()
-            binding.stereo.visibility = View.VISIBLE
-
-            binding.sampleRateHeader.visibility = View.VISIBLE
-            binding.sampleRateRadio.visibility = View.VISIBLE
-            binding.sample8kHz.visibility = View.VISIBLE
-            binding.sample11kHz.visibility = View.VISIBLE
-            binding.sample16kHz.visibility = View.VISIBLE
-            binding.sample22kHz.visibility = View.VISIBLE
-            binding.sample32kHz.visibility = View.VISIBLE
-            binding.sample44kHz.visibility = View.VISIBLE
-            binding.sample48kHz.visibility = View.VISIBLE
-
-            binding.bitrateHeader.visibility = View.VISIBLE
-            binding.bitrateRadio.visibility = View.VISIBLE
-            binding.bit64kbps.visibility = View.VISIBLE
-            binding.bit96kbps.visibility = View.VISIBLE
-            binding.bit112kbps.visibility = View.VISIBLE
-            binding.bit128kbps.visibility = View.VISIBLE
-            binding.bit160kbps.visibility = View.VISIBLE
-            binding.bit192kbps.visibility = View.VISIBLE
-            binding.bit224kbps.visibility = View.VISIBLE
-            binding.bit256kbps.visibility = View.VISIBLE
         }
+//        else if (binding.vorbisBtn.isChecked) {
+//            hideAll()
+//            binding.stereo.visibility = View.VISIBLE
+//
+//            binding.sampleRateHeader.visibility = View.VISIBLE
+//            binding.sampleRateRadio.visibility = View.VISIBLE
+//            binding.sample8kHz.visibility = View.VISIBLE
+//            binding.sample11kHz.visibility = View.VISIBLE
+//            binding.sample16kHz.visibility = View.VISIBLE
+//            binding.sample22kHz.visibility = View.VISIBLE
+//            binding.sample32kHz.visibility = View.VISIBLE
+//            binding.sample44kHz.visibility = View.VISIBLE
+//            binding.sample48kHz.visibility = View.VISIBLE
+//
+//            binding.bitrateHeader.visibility = View.VISIBLE
+//            binding.bitrateRadio.visibility = View.VISIBLE
+//            binding.bit64kbps.visibility = View.VISIBLE
+//            binding.bit96kbps.visibility = View.VISIBLE
+//            binding.bit112kbps.visibility = View.VISIBLE
+//            binding.bit128kbps.visibility = View.VISIBLE
+//            binding.bit160kbps.visibility = View.VISIBLE
+//            binding.bit192kbps.visibility = View.VISIBLE
+//            binding.bit224kbps.visibility = View.VISIBLE
+//            binding.bit256kbps.visibility = View.VISIBLE
+//        }
     }
 
     private fun hideAll() {
@@ -263,9 +268,9 @@ class SettingsFragment : Fragment() {
         binding.bitrateHeader.visibility = View.GONE
 //        binding.bit32kbps.visibility = View.GONE
 //        binding.bit48kbps.visibility = View.GONE
-        binding.bit64kbps.visibility = View.GONE
-        binding.bit96kbps.visibility = View.GONE
-        binding.bit112kbps.visibility = View.GONE
+//        binding.bit64kbps.visibility = View.GONE
+//        binding.bit96kbps.visibility = View.GONE
+//        binding.bit112kbps.visibility = View.GONE
         binding.bit128kbps.visibility = View.GONE
         binding.bit160kbps.visibility = View.GONE
         binding.bit192kbps.visibility = View.GONE

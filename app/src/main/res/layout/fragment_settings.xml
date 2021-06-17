@@ -30,12 +30,10 @@
             android:id="@+id/scroll_view"
             android:layout_width="match_parent"
             android:layout_height="320dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/settings_title"
-            app:layout_constraintVertical_bias="0.00">
+            app:layout_constraintTop_toBottomOf="@id/settings_title">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -88,7 +86,8 @@
                     <RadioButton
                         android:id="@+id/vorbis_btn"
                         style="@style/buttonStyle"
-                        android:text="@string/vorbis" />
+                        android:text="@string/vorbis"
+                        android:visibility="gone" />
 
                     <RadioButton
                         android:id="@+id/opus_btn"
@@ -180,6 +179,37 @@
                 </RadioGroup>
 
                 <TextView
+                    android:id="@+id/channel_header"
+                    style="@style/textStyle"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/source_sans_pro_bold"
+                    android:text="@string/channels"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="@id/codec_radio"
+                    app:layout_constraintTop_toBottomOf="@+id/codec_radio" />
+
+                <RadioGroup
+                    android:id="@+id/channel_radio"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="@+id/channel_header"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/channel_header"
+                    app:layout_constraintTop_toBottomOf="@+id/channel_header">
+
+                    <RadioButton
+                        android:id="@+id/mono"
+                        style="@style/buttonStyle"
+                        android:text="@string/mono" />
+
+                    <RadioButton
+                        android:id="@+id/stereo"
+                        style="@style/buttonStyle"
+                        android:checked="true"
+                        android:text="@string/stereo" />
+                </RadioGroup>
+
+                <TextView
                     android:id="@+id/bitrate_header"
                     style="@style/textStyle"
                     android:layout_marginTop="16dp"
@@ -259,37 +289,6 @@
                         style="@style/buttonStyle"
                         android:text="@string/five_hundred_eleven_kbps"
                         android:visibility="gone" />
-                </RadioGroup>
-
-                <TextView
-                    android:id="@+id/channel_header"
-                    style="@style/textStyle"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/source_sans_pro_bold"
-                    android:text="@string/channels"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="@id/codec_radio"
-                    app:layout_constraintTop_toBottomOf="@+id/codec_radio" />
-
-                <RadioGroup
-                    android:id="@+id/channel_radio"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="@+id/channel_header"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/channel_header"
-                    app:layout_constraintTop_toBottomOf="@+id/channel_header">
-
-                    <RadioButton
-                        android:id="@+id/mono"
-                        style="@style/buttonStyle"
-                        android:text="@string/mono" />
-
-                    <RadioButton
-                        android:id="@+id/stereo"
-                        style="@style/buttonStyle"
-                        android:checked="true"
-                        android:text="@string/stereo" />
                 </RadioGroup>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
