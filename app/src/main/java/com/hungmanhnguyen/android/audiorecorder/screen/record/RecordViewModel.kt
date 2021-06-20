@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import java.io.File
 
 class RecordViewModel : ViewModel() {
 
@@ -40,15 +39,10 @@ class RecordViewModel : ViewModel() {
         Log.i("RecordVM", "RecordVM created")
         _permAllowed.value = false
         _isRecording.value = false
-        _audioCodec.value = 1
-        _channel.value = 2
-        _sampleRate.value = 44100
-        _bitRate.value = 128
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        Log.i("RecordVM", "RecordVM destroyed")
+        setAudioCodec(1)
+        setChannel(2)
+        setSampleRate(44100)
+        setBitRate(128)
     }
 
     fun onPermAllowed() {
@@ -70,6 +64,7 @@ class RecordViewModel : ViewModel() {
 //    fun onDisablePcm() {
 //        _isPcm.value = false
 //    }
+
     fun setAudioCodec(codec: Int) {
         _audioCodec.value = codec
     }
@@ -85,10 +80,4 @@ class RecordViewModel : ViewModel() {
     fun setBitRate(bitRate: Int) {
         _bitRate.value = bitRate
     }
-
-    /** Read config file */
-    private fun readConfig(configFile: File) {
-        TODO("Chua lam gi")
-    }
-
 }

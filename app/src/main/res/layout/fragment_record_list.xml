@@ -10,7 +10,7 @@
             type="com.hungmanhnguyen.android.audiorecorder.screen.recordlist.RecordListViewModel" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".screen.recordlist.RecordListFragment">
@@ -18,7 +18,11 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/record_list_frag"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/player_sheet"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!--        <include layout="@layout/player_sheet" />-->
 
@@ -27,7 +31,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/player_bg"
-            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <LinearLayout
                 android:id="@+id/header"
@@ -136,5 +143,5 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

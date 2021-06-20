@@ -51,6 +51,8 @@
     <string name="thirty_twoKHz">32kHz</string>
     <string name="forty_fourKHz">44.1kHz</string>
     <string name="forty_eightKHz">48kHz</string>
+    <string name="eighty_eightKHz">88.2kHz</string>
+    <string name="ninety_sixKHz">96kHz</string>
 
     <string name="mono">Mono</string>
     <string name="stereo">Stereo</string>
@@ -71,7 +73,7 @@
     <string name="pcm_desc">PCM: Uncompressed audio data codec. Best quality, however, takes up a lot of space. Use only when needed.</string>
     <string name="aac_desc">AAC: Decent quality with small file size. Recommend.</string>
     <string name="amr_nb_desc">AMR_NB: Good codec for voice recording, however most telecommunication services provide better quality, use if you need to save space.</string>
-    <string name="amr_wb_desc">AMR_WB: Provide wider bandwidth than AMR_NB, result in slightly better quality with a little bit increase in file size.</string>
+    <string name="amr_wb_desc">AMR_WB: Provide wider bandwidth than AMR_NB, result in slightly better quality.</string>
     <string name="vorbis_desc">Vorbis: An audio codec with good efficiency, providing better quality than AAC with the same given Bit Rate. However, it doesn\'t compatible with all devices.</string>
     <string name="opus_desc">Opus: A superior lossy codec, providing way better quality than AAC and Vorbis with the same given Bit Rate. However, it doesn\'t compatible with all devices.</string>
 

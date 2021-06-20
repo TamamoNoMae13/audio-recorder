@@ -15,18 +15,19 @@ import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.hungmanhnguyen.android.audiorecorder.R
 import com.hungmanhnguyen.android.audiorecorder.databinding.FragmentRecordBinding
-import java.io.File
+
+//import java.io.File
 import java.io.IOException
 import java.util.*
 
 /** Define constants */
 private const val REC_PERM = Manifest.permission.RECORD_AUDIO
 private const val WRITE_PERM = Manifest.permission.WRITE_EXTERNAL_STORAGE
-private const val READ_PERM = Manifest.permission.READ_EXTERNAL_STORAGE
-private val PM_PERM_GRANTED = PackageManager.PERMISSION_GRANTED
+//private const val READ_PERM = Manifest.permission.READ_EXTERNAL_STORAGE
+private const val PM_PERM_GRANTED = PackageManager.PERMISSION_GRANTED
 
 /** Define formats */
 //private const val WAV = "Not yet"
@@ -41,7 +42,7 @@ private const val AAC = MediaRecorder.AudioEncoder.AAC
 private const val AMR_NB = MediaRecorder.AudioEncoder.AMR_NB
 private const val AMR_WB = MediaRecorder.AudioEncoder.AMR_WB
 //private const val VORBIS = MediaRecorder.AudioEncoder.VORBIS
-//private const val OPUS = MediaRecorder.OutputFormat.OPUS
+//private const val OPUS = MediaRecorder.AudioEncoder.OPUS
 
 class RecordFragment : Fragment() {
 
@@ -64,6 +65,13 @@ class RecordFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_record, container, false)
         viewModel = ViewModelProvider(this).get(RecordViewModel::class.java)
 
+        /** Get SafeArgs bundle from SettingsFragment */
+            val args = RecordFragmentArgs.fromBundle(requireArguments())
+            viewModel.setAudioCodec(args.codec)
+            viewModel.setChannel(args.channel)
+            viewModel.setSampleRate(args.sampleRate)
+            viewModel.setBitRate(args.bitRate)
+
         /** OnClick Handlers */
         // Record Button
         binding.recordBtn.setOnClickListener {
@@ -81,23 +89,23 @@ class RecordFragment : Fragment() {
         }
 
         // Settings Button
-        binding.settingBtn.setOnClickListener {
-            Navigation.createNavigateOnClickListener(R.id.action_recordFragment_to_settingsFragment)
+        binding.settingBtn.setOnClickListener { v: View ->
+            if (viewModel.isRecording.value == true) announceIsRecord()
+            else v.findNavController().navigate(R.id.action_recordFragment_to_settingsFragment)
         }
-//        binding.settingBtn.setOnClickListener {
-//            if(viewModel.isRecording.value == true) {
-//                announceIsRecord()
-//            } else
-//                Navigation.createNavigateOnClickListener(R.id.action_recordFragment_to_settingsFragment)
-//        }
+
         // Record List Button
-        binding.recordListBtn.setOnClickListener {
-            if(viewModel.isRecording.value == true) {
-                announceIsRecord()
-            } else Navigation.createNavigateOnClickListener(R.id.action_recordFragment_to_recordListFragment)
+        binding.recordListBtn.setOnClickListener { v: View ->
+            if (viewModel.isRecording.value == true) announceIsRecord()
+            else v.findNavController().navigate(R.id.action_recordFragment_to_recordListFragment)
         }
 
         return binding.root
+    }
+
+    /** Announce when isRecording */
+    private fun announceIsRecord() {
+        Toast.makeText(requireContext(),"Stop recording first!", Toast.LENGTH_SHORT).show()
     }
 
     /** Check perm after View generated */
@@ -116,11 +124,6 @@ class RecordFragment : Fragment() {
         // super.registerForActivityResult()
         if (requestCode == 101 && grantResults[0] == PM_PERM_GRANTED)
             viewModel.onPermAllowed()
-    }
-
-    /** Announce when clicking other buttons while recording */
-    private fun announceIsRecord() {
-        Toast.makeText(context,"Stop recording first",Toast.LENGTH_SHORT).show()
     }
 
     /** Stop recording */
@@ -143,10 +146,11 @@ class RecordFragment : Fragment() {
 
     /** Start recording */
     private fun startRecording(codec: Int, channel: Int, sampleRate: Int, bitRate: Int) {
+
         // Params for recording preset
-        var recCodec: Int
-        var recFormat: Int
-        var ext: String
+        val recCodec: Int
+        val recFormat: Int
+        val ext: String
 
         // Set preset from indices in radios
         when (codec) {
@@ -180,11 +184,14 @@ class RecordFragment : Fragment() {
 //                ext = ".ogg"
 //            }
             else -> {
-                recCodec = AMR_NB
-                recFormat = THREE_GP
-                ext = ".3gp"
+                recCodec = AAC
+                recFormat = M4A
+                ext = ".m4a"
             }
         }
+
+        val sample: Int = if (sampleRate > 48000) 48000
+        else sampleRate
 
         // Start timer from 0
         binding.recordTimer.base = SystemClock.elapsedRealtime()
@@ -197,7 +204,7 @@ class RecordFragment : Fragment() {
         val recPath: String = requireActivity().getExternalFilesDir("/")!!.absolutePath
 
         // Formatting filename from date + extension
-        recFile = "Record_" + formatter.format(Date()) + ext //".3gp" // ext
+        recFile = "Record_" + formatter.format(Date()) + ext
 
         // Change the announcement text
         binding.announcement.text = getString(R.string.record_start_announce, recFile)
@@ -212,9 +219,12 @@ class RecordFragment : Fragment() {
         // keeps configuring sources
         mr!!.setOutputFormat(recFormat)
         mr!!.setAudioEncoder(recCodec)
-        mr!!.setAudioChannels(channel)
-        mr!!.setAudioSamplingRate(sampleRate)
-        mr!!.setAudioEncodingBitRate(bitRate*1000)
+
+        if (recFormat != THREE_GP) {
+            mr!!.setAudioChannels(channel)
+            mr!!.setAudioSamplingRate(sample)
+            mr!!.setAudioEncodingBitRate(bitRate*1000)
+        }
         mr!!.setOutputFile("$recPath/$recFile")
 
         // Prepare, then start if no error occurs, MediaRecorder Lifecycles
@@ -243,9 +253,6 @@ class RecordFragment : Fragment() {
     }
 
     /** Lifecycle Methods */
-//    override fun onStart() {
-//        super.onStart()
-//    }
 
     override fun onStop() {
         super.onStop()

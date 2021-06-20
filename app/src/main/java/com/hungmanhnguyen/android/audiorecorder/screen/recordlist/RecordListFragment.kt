@@ -14,11 +14,14 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.hungmanhnguyen.android.audiorecorder.R
 import com.hungmanhnguyen.android.audiorecorder.databinding.FragmentRecordListBinding
 import java.io.File
 import java.io.IOException
+
+/** Define constant */
+//private const val READ_PERM = Manifest.permission.READ_EXTERNAL_STORAGE
+//private const val PM_PERM_GRANTED = PackageManager.PERMISSION_GRANTED
 
 class RecordListFragment : Fragment(), RecordListAdapter.OnItemListClick {
 
@@ -28,16 +31,11 @@ class RecordListFragment : Fragment(), RecordListAdapter.OnItemListClick {
 
     /** Define related components as variables */
     private lateinit var recordListAdapter: RecordListAdapter
-    private var bottomSheetBehavior = BottomSheetBehavior.from(binding.playerSheet)
     private var recordFiles: Array<File>? = null
     private var mp: MediaPlayer? = null
     private var fileToPlay: File? = null
     private var seekbarHandler: Handler? = null
     private var updateSeekbar: Runnable? = null
-
-    /** Define constant */
-    private val READ_PERM = Manifest.permission.READ_EXTERNAL_STORAGE
-    private val PM_PERM_GRANTED = PackageManager.PERMISSION_GRANTED
 
     /** Setting up when init and create View */
     override fun onCreateView(
@@ -62,19 +60,6 @@ class RecordListFragment : Fragment(), RecordListAdapter.OnItemListClick {
         binding.recordListFrag.setHasFixedSize(true)
         binding.recordListFrag.layoutManager = LinearLayoutManager(context)
         binding.recordListFrag.adapter = recordListAdapter
-
-        bottomSheetBehavior.addBottomSheetCallback(object :
-            BottomSheetBehavior.BottomSheetCallback() {
-            override fun onStateChanged(bottomSheet: View, newState: Int) {
-                if (newState == BottomSheetBehavior.STATE_HIDDEN) {
-                    bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
-                }
-            }
-
-            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                // Empty, just sliding, no effect after sliding.
-            }
-        })
 
         /** OnClick Handlers */
         // Play Button
@@ -115,7 +100,6 @@ class RecordListFragment : Fragment(), RecordListAdapter.OnItemListClick {
     /** Play/Pause/Resume/Stop audio func */
     private fun playAudio(fileToPlay: File?) {
         mp = MediaPlayer()
-        bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
         try {
             mp!!.setDataSource(fileToPlay!!.absolutePath)
             mp!!.prepare()

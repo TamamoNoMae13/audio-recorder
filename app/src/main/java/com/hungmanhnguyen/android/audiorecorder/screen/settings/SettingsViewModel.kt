@@ -1,9 +1,9 @@
 package com.hungmanhnguyen.android.audiorecorder.screen.settings
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import java.io.File
 
 class SettingsViewModel : ViewModel() {
     private val _audioCodec = MutableLiveData<Int>()
@@ -22,6 +22,14 @@ class SettingsViewModel : ViewModel() {
     val bitRate: LiveData<Int>
         get() = _bitRate
 
+    init {
+        Log.i("SettingVM", "SettingVM created")
+        setAudioCodec(1)
+        setChannel(2)
+        setSampleRate(44100)
+        setBitRate(128)
+    }
+
     fun setAudioCodec(codec: Int) {
         _audioCodec.value = codec
     }
@@ -36,17 +44,5 @@ class SettingsViewModel : ViewModel() {
 
     fun setBitRate(bitRate: Int) {
         _bitRate.value = bitRate
-    }
-
-    fun saveConfigToFile(configFile: File) {
-        configFile.bufferedWriter().use { out ->
-            out.write(audioCodec.value!!)
-            out.write("\n")
-            out.write(channel.value!!)
-            out.write("\n")
-            out.write(sampleRate.value!!)
-            out.write("\n")
-            out.write(bitRate.value!!)
-        }
     }
 }

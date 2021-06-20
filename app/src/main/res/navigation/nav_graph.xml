@@ -3,13 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/recordFragment">
+    app:startDestination="@id/settingsFragment">
 
     <fragment
         android:id="@+id/recordFragment"
         android:name="com.hungmanhnguyen.android.audiorecorder.screen.record.RecordFragment"
         android:label="fragment_record"
         tools:layout="@layout/fragment_record">
+        <argument
+            android:name="codec"
+            app:argType="integer" />
+        <argument
+            android:name="channel"
+            app:argType="integer" />
+        <argument
+            android:name="sampleRate"
+            app:argType="integer" />
+        <argument
+            android:name="bitRate"
+            app:argType="integer" />
         <action
             android:id="@+id/action_recordFragment_to_recordListFragment"
             app:destination="@id/recordListFragment" />
@@ -23,8 +35,13 @@
         android:name="com.hungmanhnguyen.android.audiorecorder.screen.recordlist.RecordListFragment"
         android:label="fragment_record_list"
         tools:layout="@layout/fragment_record_list" />
+
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.hungmanhnguyen.android.audiorecorder.screen.settings.SettingsFragment"
-        android:label="SettingsFragment" />
+        android:label="SettingsFragment" >
+        <action
+            android:id="@+id/action_settingsFragment_to_recordFragment"
+            app:destination="@id/recordFragment" />
+    </fragment>
 </navigation>
