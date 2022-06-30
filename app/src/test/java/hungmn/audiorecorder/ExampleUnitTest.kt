@@ -1,4 +1,4 @@
-package com.hungmanhnguyen.android.audiorecorder
+package hungmn.audiorecorder
 
 import org.junit.Test
 

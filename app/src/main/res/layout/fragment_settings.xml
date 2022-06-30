@@ -1,358 +1,356 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
+	<data>
 
-        <variable
-            name="settingViewModel"
-            type="com.hungmanhnguyen.android.audiorecorder.screen.settings.SettingsFragment" />
-    </data>
+		<variable
+				name="settingViewModel"
+				type="hungmn.audiorecorder.screen.settings.SettingsFragment" />
+	</data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".screen.settings.SettingsFragment">
+	<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			tools:context=".screen.settings.SettingsFragment">
 
-        <TextView
-            android:id="@+id/settings_title"
-            style="@style/textStyle"
-            android:fontFamily="@font/source_sans_pro_bold"
-            android:text="@string/setting_menu"
-            android:textSize="48sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+		<TextView
+				android:id="@+id/settings_title"
+				style="@style/textStyle"
+				android:fontFamily="@font/source_sans_pro_bold"
+				android:text="@string/setting_menu"
+				android:textSize="48sp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/codec_desc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="@font/source_sans_pro"
-            android:text="@string/aac_desc"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/settings_title" />
+		<TextView
+				android:id="@+id/codec_desc"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="8dp"
+				android:layout_marginEnd="8dp"
+				android:fontFamily="@font/source_sans_pro"
+				android:text="@string/aac_desc"
+				android:textColor="@color/black"
+				android:textSize="18sp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/settings_title" />
 
-        <TextView
-            android:id="@+id/other_desc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="@font/source_sans_pro"
-            android:text="@string/other_desc"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/codec_desc" />
+		<TextView
+				android:id="@+id/other_desc"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="8dp"
+				android:layout_marginTop="4dp"
+				android:layout_marginEnd="8dp"
+				android:fontFamily="@font/source_sans_pro"
+				android:text="@string/other_desc"
+				android:textSize="14sp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/codec_desc" />
 
-        <TextView
-            android:id="@+id/avg_file_size"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:fontFamily="@font/source_sans_pro"
-            android:text="@string/avg_file_size"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/other_desc" />
+		<TextView
+				android:id="@+id/avg_file_size"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="8dp"
+				android:layout_marginEnd="8dp"
+				android:fontFamily="@font/source_sans_pro"
+				android:text="@string/avg_file_size"
+				android:textSize="18sp"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@+id/other_desc" />
 
-        <ScrollView
-            android:id="@+id/scroll_view"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/save_setting_btn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/avg_file_size"
-            app:layout_constraintVertical_bias="0.0">
+		<ScrollView
+				android:id="@+id/scroll_view"
+				android:layout_width="match_parent"
+				android:layout_height="0dp"
+				app:layout_constraintBottom_toTopOf="@id/save_setting_btn"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintHorizontal_bias="0.0"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toBottomOf="@id/avg_file_size"
+				app:layout_constraintVertical_bias="0.0">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+			<androidx.constraintlayout.widget.ConstraintLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/codec_header"
-                    style="@style/textStyle"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/source_sans_pro_bold"
-                    android:text="@string/codec"
-                    android:textSize="20sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+				<TextView
+						android:id="@+id/codec_header"
+						style="@style/textStyle"
+						android:layout_marginStart="16dp"
+						android:layout_marginTop="16dp"
+						android:fontFamily="@font/source_sans_pro_bold"
+						android:text="@string/codec"
+						android:textSize="20sp"
+						app:layout_constraintEnd_toEndOf="parent"
+						app:layout_constraintHorizontal_bias="0.0"
+						app:layout_constraintStart_toStartOf="parent"
+						app:layout_constraintTop_toTopOf="parent" />
 
-                <RadioGroup
-                    android:id="@+id/codec_radio"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="@+id/codec_header"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/codec_header"
-                    app:layout_constraintTop_toBottomOf="@+id/codec_header">
+				<RadioGroup
+						android:id="@+id/codec_radio"
+						android:layout_width="120dp"
+						android:layout_height="wrap_content"
+						app:layout_constraintEnd_toEndOf="@+id/codec_header"
+						app:layout_constraintHorizontal_bias="0.0"
+						app:layout_constraintStart_toStartOf="@+id/codec_header"
+						app:layout_constraintTop_toBottomOf="@+id/codec_header">
 
-                    <RadioButton
-                        android:id="@+id/pcm_btn"
-                        style="@style/buttonStyle"
-                        android:text="@string/pcm" />
+					<RadioButton
+							android:id="@+id/pcm_btn"
+							style="@style/buttonStyle"
+							android:text="@string/pcm" />
 
-                    <RadioButton
-                        android:id="@+id/aac_btn"
-                        style="@style/buttonStyle"
-                        android:checked="true"
-                        android:text="@string/aac" />
+					<RadioButton
+							android:id="@+id/aac_btn"
+							style="@style/buttonStyle"
+							android:checked="true"
+							android:text="@string/aac" />
 
-                    <RadioButton
-                        android:id="@+id/amr_nb_btn"
-                        style="@style/buttonStyle"
-                        android:text="@string/amr_nb" />
+					<RadioButton
+							android:id="@+id/amr_nb_btn"
+							style="@style/buttonStyle"
+							android:text="@string/amr_nb" />
 
-                    <RadioButton
-                        android:id="@+id/amr_wb_btn"
-                        style="@style/buttonStyle"
-                        android:text="@string/amr_wb" />
+					<RadioButton
+							android:id="@+id/amr_wb_btn"
+							style="@style/buttonStyle"
+							android:text="@string/amr_wb" />
 
-                    <RadioButton
-                        android:id="@+id/vorbis_btn"
-                        style="@style/buttonStyle"
-                        android:text="@string/vorbis" />
+					<RadioButton
+							android:id="@+id/vorbis_btn"
+							style="@style/buttonStyle"
+							android:text="@string/vorbis" />
 
-                    <RadioButton
-                        android:id="@+id/opus_btn"
-                        style="@style/buttonStyle"
-                        android:text="@string/opus"
-                        android:visibility="gone" />
-                </RadioGroup>
+					<RadioButton
+							android:id="@+id/opus_btn"
+							style="@style/buttonStyle"
+							android:text="@string/opus"
+							android:visibility="gone" />
+				</RadioGroup>
 
-                <TextView
-                    android:id="@+id/format_header"
-                    style="@style/textStyle"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/source_sans_pro_bold"
-                    android:text="@string/format"
-                    android:textSize="20sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.6"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+				<TextView
+						android:id="@+id/format_header"
+						style="@style/textStyle"
+						android:layout_marginTop="16dp"
+						android:fontFamily="@font/source_sans_pro_bold"
+						android:text="@string/format"
+						android:textSize="20sp"
+						app:layout_constraintEnd_toEndOf="parent"
+						app:layout_constraintHorizontal_bias="0.6"
+						app:layout_constraintStart_toStartOf="parent"
+						app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/format_name"
-                    style="@style/textStyle"
-                    android:layout_marginStart="16dp"
-                    android:fontFamily="@font/source_sans_pro"
-                    android:text="@string/m4a"
-                    android:textSize="24sp"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/format_header"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/format_header" />
+				<TextView
+						android:id="@+id/format_name"
+						style="@style/textStyle"
+						android:layout_marginStart="16dp"
+						android:fontFamily="@font/source_sans_pro"
+						android:text="@string/m4a"
+						android:textSize="24sp"
+						app:layout_constraintBaseline_toBaselineOf="@+id/format_header"
+						app:layout_constraintEnd_toEndOf="parent"
+						app:layout_constraintHorizontal_bias="0.0"
+						app:layout_constraintStart_toEndOf="@+id/format_header" />
 
-                <TextView
-                    android:id="@+id/sample_rate_header"
-                    style="@style/textStyle"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/source_sans_pro_bold"
-                    android:text="@string/sample_rate"
-                    android:textSize="20sp"
-                    app:layout_constraintEnd_toEndOf="@+id/format_header"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/format_header"
-                    app:layout_constraintTop_toBottomOf="@+id/format_header" />
+				<TextView
+						android:id="@+id/sample_rate_header"
+						style="@style/textStyle"
+						android:layout_marginTop="16dp"
+						android:fontFamily="@font/source_sans_pro_bold"
+						android:text="@string/sample_rate"
+						android:textSize="20sp"
+						app:layout_constraintEnd_toEndOf="@+id/format_header"
+						app:layout_constraintHorizontal_bias="0.0"
+						app:layout_constraintStart_toStartOf="@+id/format_header"
+						app:layout_constraintTop_toBottomOf="@+id/format_header" />
 
-                <RadioGroup
-                    android:id="@+id/sample_rate_radio"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="@+id/sample_rate_header"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/sample_rate_header"
-                    app:layout_constraintTop_toBottomOf="@+id/sample_rate_header">
+				<RadioGroup
+						android:id="@+id/sample_rate_radio"
+						android:layout_width="120dp"
+						android:layout_height="wrap_content"
+						app:layout_constraintEnd_toEndOf="@+id/sample_rate_header"
+						app:layout_constraintHorizontal_bias="0.0"
+						app:layout_constraintStart_toStartOf="@+id/sample_rate_header"
+						app:layout_constraintTop_toBottomOf="@+id/sample_rate_header">
 
-                    <RadioButton
-                        android:id="@+id/sample_8kHz"
-                        style="@style/buttonStyle"
-                        android:text="@string/eightKHz" />
+					<RadioButton
+							android:id="@+id/sample_8kHz"
+							style="@style/buttonStyle"
+							android:text="@string/eightKHz" />
 
-                    <RadioButton
-                        android:id="@+id/sample_11kHz"
-                        style="@style/buttonStyle"
-                        android:text="@string/elevenKHz" />
+					<RadioButton
+							android:id="@+id/sample_11kHz"
+							style="@style/buttonStyle"
+							android:text="@string/elevenKHz" />
 
-                    <RadioButton
-                        android:id="@+id/sample_16kHz"
-                        style="@style/buttonStyle"
-                        android:text="@string/sixteenKHz" />
+					<RadioButton
+							android:id="@+id/sample_16kHz"
+							style="@style/buttonStyle"
+							android:text="@string/sixteenKHz" />
 
-                    <RadioButton
-                        android:id="@+id/sample_22kHz"
-                        style="@style/buttonStyle"
-                        android:text="@string/twenty_twoKHz" />
+					<RadioButton
+							android:id="@+id/sample_22kHz"
+							style="@style/buttonStyle"
+							android:text="@string/twenty_twoKHz" />
 
-                    <RadioButton
-                        android:id="@+id/sample_32kHz"
-                        style="@style/buttonStyle"
-                        android:text="@string/thirty_twoKHz" />
+					<RadioButton
+							android:id="@+id/sample_32kHz"
+							style="@style/buttonStyle"
+							android:text="@string/thirty_twoKHz" />
 
-                    <RadioButton
-                        android:id="@+id/sample_44kHz"
-                        style="@style/buttonStyle"
-                        android:checked="true"
-                        android:text="@string/forty_fourKHz" />
+					<RadioButton
+							android:id="@+id/sample_44kHz"
+							style="@style/buttonStyle"
+							android:checked="true"
+							android:text="@string/forty_fourKHz" />
 
-                    <RadioButton
-                        android:id="@+id/sample_48kHz"
-                        style="@style/buttonStyle"
-                        android:text="@string/forty_eightKHz" />
+					<RadioButton
+							android:id="@+id/sample_48kHz"
+							style="@style/buttonStyle"
+							android:text="@string/forty_eightKHz" />
 
-                    <RadioButton
-                        android:id="@+id/sample_88kHz"
-                        style="@style/buttonStyle"
-                        android:text="@string/eighty_eightKHz" />
+					<RadioButton
+							android:id="@+id/sample_88kHz"
+							style="@style/buttonStyle"
+							android:text="@string/eighty_eightKHz" />
 
-                    <RadioButton
-                        android:id="@+id/sample_96kHz"
-                        style="@style/buttonStyle"
-                        android:text="@string/ninety_sixKHz" />
-                </RadioGroup>
+					<RadioButton
+							android:id="@+id/sample_96kHz"
+							style="@style/buttonStyle"
+							android:text="@string/ninety_sixKHz" />
+				</RadioGroup>
 
-                <TextView
-                    android:id="@+id/channel_header"
-                    style="@style/textStyle"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/source_sans_pro_bold"
-                    android:text="@string/channels"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="@id/codec_radio"
-                    app:layout_constraintTop_toBottomOf="@+id/codec_radio" />
+				<TextView
+						android:id="@+id/channel_header"
+						style="@style/textStyle"
+						android:layout_marginTop="16dp"
+						android:fontFamily="@font/source_sans_pro_bold"
+						android:text="@string/channels"
+						android:textSize="20sp"
+						app:layout_constraintStart_toStartOf="@id/codec_radio"
+						app:layout_constraintTop_toBottomOf="@+id/codec_radio" />
 
-                <RadioGroup
-                    android:id="@+id/channel_radio"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="@+id/channel_header"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/channel_header"
-                    app:layout_constraintTop_toBottomOf="@+id/channel_header">
+				<RadioGroup
+						android:id="@+id/channel_radio"
+						android:layout_width="120dp"
+						android:layout_height="wrap_content"
+						app:layout_constraintEnd_toEndOf="@+id/channel_header"
+						app:layout_constraintHorizontal_bias="0.0"
+						app:layout_constraintStart_toStartOf="@+id/channel_header"
+						app:layout_constraintTop_toBottomOf="@+id/channel_header">
 
-                    <RadioButton
-                        android:id="@+id/mono"
-                        style="@style/buttonStyle"
-                        android:text="@string/mono" />
+					<RadioButton
+							android:id="@+id/mono"
+							style="@style/buttonStyle"
+							android:text="@string/mono" />
 
-                    <RadioButton
-                        android:id="@+id/stereo"
-                        style="@style/buttonStyle"
-                        android:checked="true"
-                        android:text="@string/stereo" />
-                </RadioGroup>
+					<RadioButton
+							android:id="@+id/stereo"
+							style="@style/buttonStyle"
+							android:checked="true"
+							android:text="@string/stereo" />
+				</RadioGroup>
 
-                <TextView
-                    android:id="@+id/bitrate_header"
-                    style="@style/textStyle"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/source_sans_pro_bold"
-                    android:text="@string/bitrate"
-                    android:textSize="20sp"
-                    app:layout_constraintStart_toStartOf="@+id/channel_radio"
-                    app:layout_constraintTop_toBottomOf="@+id/channel_radio" />
+				<TextView
+						android:id="@+id/bitrate_header"
+						style="@style/textStyle"
+						android:layout_marginTop="16dp"
+						android:fontFamily="@font/source_sans_pro_bold"
+						android:text="@string/bitrate"
+						android:textSize="20sp"
+						app:layout_constraintStart_toStartOf="@+id/channel_radio"
+						app:layout_constraintTop_toBottomOf="@+id/channel_radio" />
 
-                <RadioGroup
-                    android:id="@+id/bitrate_radio"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintEnd_toEndOf="@+id/bitrate_header"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/bitrate_header"
-                    app:layout_constraintTop_toBottomOf="@+id/bitrate_header">
+				<RadioGroup
+						android:id="@+id/bitrate_radio"
+						android:layout_width="120dp"
+						android:layout_height="wrap_content"
+						app:layout_constraintEnd_toEndOf="@+id/bitrate_header"
+						app:layout_constraintHorizontal_bias="0.0"
+						app:layout_constraintStart_toStartOf="@+id/bitrate_header"
+						app:layout_constraintTop_toBottomOf="@+id/bitrate_header">
 
-                    <RadioButton
-                        android:id="@+id/bit_32kbps"
-                        style="@style/buttonStyle"
-                        android:text="@string/thirty_twoKHz"
-                        android:visibility="gone" />
+					<RadioButton
+							android:id="@+id/bit_32kbps"
+							style="@style/buttonStyle"
+							android:text="@string/thirty_twoKHz"
+							android:visibility="gone" />
 
-                    <RadioButton
-                        android:id="@+id/bit_48kbps"
-                        style="@style/buttonStyle"
-                        android:text="@string/forty_eightKHz"
-                        android:visibility="gone" />
+					<RadioButton
+							android:id="@+id/bit_48kbps"
+							style="@style/buttonStyle"
+							android:text="@string/forty_eightKHz"
+							android:visibility="gone" />
 
-                    <RadioButton
-                        android:id="@+id/bit_64kbps"
-                        style="@style/buttonStyle"
-                        android:text="@string/sixty_four_kbps"
-                        android:visibility="gone" />
+					<RadioButton
+							android:id="@+id/bit_64kbps"
+							style="@style/buttonStyle"
+							android:text="@string/sixty_four_kbps"
+							android:visibility="gone" />
 
-                    <RadioButton
-                        android:id="@+id/bit_96kbps"
-                        style="@style/buttonStyle"
-                        android:text="@string/ninety_six_kbps"
-                        android:visibility="gone" />
+					<RadioButton
+							android:id="@+id/bit_96kbps"
+							style="@style/buttonStyle"
+							android:text="@string/ninety_six_kbps"
+							android:visibility="gone" />
 
-                    <RadioButton
-                        android:id="@+id/bit_112kbps"
-                        style="@style/buttonStyle"
-                        android:text="@string/hundred_twelve_kbps"
-                        android:visibility="gone" />
+					<RadioButton
+							android:id="@+id/bit_112kbps"
+							style="@style/buttonStyle"
+							android:text="@string/hundred_twelve_kbps"
+							android:visibility="gone" />
 
-                    <RadioButton
-                        android:id="@+id/bit_128kbps"
-                        style="@style/buttonStyle"
-                        android:checked="true"
-                        android:text="@string/hundred_twenty_eights_kbps" />
+					<RadioButton
+							android:id="@+id/bit_128kbps"
+							style="@style/buttonStyle"
+							android:checked="true"
+							android:text="@string/hundred_twenty_eights_kbps" />
 
-                    <RadioButton
-                        android:id="@+id/bit_160kbps"
-                        style="@style/buttonStyle"
-                        android:text="@string/hundred_sixty_kbps" />
+					<RadioButton
+							android:id="@+id/bit_160kbps"
+							style="@style/buttonStyle"
+							android:text="@string/hundred_sixty_kbps" />
 
-                    <RadioButton
-                        android:id="@+id/bit_192kbps"
-                        style="@style/buttonStyle"
-                        android:text="@string/hundred_ninety_two_kbps" />
+					<RadioButton
+							android:id="@+id/bit_192kbps"
+							style="@style/buttonStyle"
+							android:text="@string/hundred_ninety_two_kbps" />
 
-                    <RadioButton
-                        android:id="@+id/bit_224kbps"
-                        style="@style/buttonStyle"
-                        android:text="@string/two_hundred_twenty_four_kbps" />
+					<RadioButton
+							android:id="@+id/bit_224kbps"
+							style="@style/buttonStyle"
+							android:text="@string/two_hundred_twenty_four_kbps" />
 
-                    <RadioButton
-                        android:id="@+id/bit_256kbps"
-                        style="@style/buttonStyle"
-                        android:text="@string/two_hundred_fifty_six_kbps" />
+					<RadioButton
+							android:id="@+id/bit_256kbps"
+							style="@style/buttonStyle"
+							android:text="@string/two_hundred_fifty_six_kbps" />
 
-                    <RadioButton
-                        android:id="@+id/bit_510kbps"
-                        style="@style/buttonStyle"
-                        android:text="@string/five_hundred_eleven_kbps"
-                        android:visibility="gone" />
-                </RadioGroup>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
+					<RadioButton
+							android:id="@+id/bit_510kbps"
+							style="@style/buttonStyle"
+							android:text="@string/five_hundred_eleven_kbps"
+							android:visibility="gone" />
+				</RadioGroup>
+			</androidx.constraintlayout.widget.ConstraintLayout>
+		</ScrollView>
 
-        <Button
-            android:id="@+id/save_setting_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:text="@string/saveBtn"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+		<Button
+				android:id="@+id/save_setting_btn"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="4dp"
+				android:text="@string/saveBtn"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent" />
+	</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
