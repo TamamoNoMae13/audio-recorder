@@ -38,16 +38,14 @@ class RecordListFragment : Fragment(), RecordListAdapter.OnItemListClick {
 
 	/** Setting up when init and create View */
 	override fun onCreateView(
-		inflater: LayoutInflater, container: ViewGroup?,
+		inflater: LayoutInflater,
+		container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View {
 
 		/** View & Data Binding + declare ViewModel */
 		binding = DataBindingUtil.inflate(
-			inflater,
-			R.layout.fragment_record_list,
-			container,
-			false
+			inflater, R.layout.fragment_record_list, container, false
 		)
 		viewModel = ViewModelProvider(this)[RecordListViewModel::class.java]
 		return binding.root
@@ -56,7 +54,8 @@ class RecordListFragment : Fragment(), RecordListAdapter.OnItemListClick {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
-		val path: String = requireActivity().getExternalFilesDir("/")!!.absolutePath
+		val path: String =
+			requireActivity().getExternalFilesDir("/")!!.absolutePath
 		val directory = File(path)
 		recordFiles = directory.listFiles()
 
@@ -79,9 +78,7 @@ class RecordListFragment : Fragment(), RecordListAdapter.OnItemListClick {
 		binding.seekbar.setOnSeekBarChangeListener(object :
 			SeekBar.OnSeekBarChangeListener {
 			override fun onProgressChanged(
-				seekBar: SeekBar,
-				progress: Int,
-				fromUser: Boolean
+				seekBar: SeekBar, progress: Int, fromUser: Boolean
 			) {
 			}
 
@@ -120,9 +117,7 @@ class RecordListFragment : Fragment(), RecordListAdapter.OnItemListClick {
 		}
 		binding.playButton.setImageDrawable(
 			ResourcesCompat.getDrawable(
-				resources,
-				R.drawable.ic_pause_button,
-				null
+				resources, R.drawable.ic_pause_button, null
 			)
 		)
 		binding.filename.text = fileToPlay!!.name
@@ -142,9 +137,7 @@ class RecordListFragment : Fragment(), RecordListAdapter.OnItemListClick {
 		mp!!.pause()
 		binding.playButton.setImageDrawable(
 			ResourcesCompat.getDrawable(
-				resources,
-				R.drawable.ic_play_button,
-				null
+				resources, R.drawable.ic_play_button, null
 			)
 		)
 		viewModel.onPlayingPause()
@@ -155,9 +148,7 @@ class RecordListFragment : Fragment(), RecordListAdapter.OnItemListClick {
 		mp!!.start()
 		binding.playButton.setImageDrawable(
 			ResourcesCompat.getDrawable(
-				resources,
-				R.drawable.ic_pause_button,
-				null
+				resources, R.drawable.ic_pause_button, null
 			)
 		)
 		viewModel.onPlayingStart()
@@ -169,9 +160,7 @@ class RecordListFragment : Fragment(), RecordListAdapter.OnItemListClick {
 		mp!!.stop()
 		binding.playButton.setImageDrawable(
 			ResourcesCompat.getDrawable(
-				resources,
-				R.drawable.ic_play_button,
-				null
+				resources, R.drawable.ic_play_button, null
 			)
 		)
 		viewModel.onPlayingStop()
@@ -190,7 +179,10 @@ class RecordListFragment : Fragment(), RecordListAdapter.OnItemListClick {
 	}
 
 	/** Leave here so this class can implement interface/abstract classes */
-	override fun onItemClick(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {}
+	override fun onItemClick(
+		p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long
+	) {
+	}
 
 	/** Lifecycle methods */
 	override fun onStop() {

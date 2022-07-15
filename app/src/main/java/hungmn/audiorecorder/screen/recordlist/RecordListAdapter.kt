@@ -18,8 +18,7 @@ class RecordListAdapter(
 	private var timeAgo: TimeAgo? = null
 
 	override fun onCreateViewHolder(
-		parent: ViewGroup,
-		viewType: Int
+		parent: ViewGroup, viewType: Int
 	): RecordListViewHolder {
 		timeAgo = TimeAgo()
 		return RecordListViewHolder(
@@ -44,8 +43,7 @@ class RecordListAdapter(
 	}
 
 	inner class RecordListViewHolder(itemView: View) :
-		RecyclerView.ViewHolder(itemView),
-		View.OnClickListener {
+		RecyclerView.ViewHolder(itemView), View.OnClickListener {
 		/** Define Views */
 //        var listImage: ImageView = itemView.findViewById(R.id.list_image_view)
 		var listTitle: TextView = itemView.findViewById(R.id.list_title)
@@ -53,8 +51,7 @@ class RecordListAdapter(
 
 		override fun onClick(v: View) {
 			onItemListClick.onItemListClick(
-				recordFiles[adapterPosition],
-				adapterPosition
+				recordFiles[adapterPosition], adapterPosition
 			)
 		}
 

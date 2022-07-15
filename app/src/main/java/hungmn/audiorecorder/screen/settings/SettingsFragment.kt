@@ -30,10 +30,7 @@ class SettingsFragment : Fragment() {
 
 		/** View & Data Binding + declare ViewModel */
 		binding = DataBindingUtil.inflate(
-			inflater,
-			R.layout.fragment_settings,
-			container,
-			false
+			inflater, R.layout.fragment_settings, container, false
 		)
 		viewModel = ViewModelProvider(this)[SettingsViewModel::class.java]
 
@@ -77,14 +74,12 @@ class SettingsFragment : Fragment() {
 			val d: Int = viewModel.bitRate.value!!
 			v.findNavController().navigate(
 				SettingsFragmentDirections.actionSettingsFragmentToRecordFragment(
-					a,
-					b,
-					c,
-					d
+					a, b, c, d
 				)
 			)
-			Toast.makeText(requireContext(), "Settings saved!", Toast.LENGTH_LONG)
-				.show()
+			Toast.makeText(
+				requireContext(), "Settings saved!", Toast.LENGTH_LONG
+			).show()
 		}
 	}
 
@@ -143,15 +138,14 @@ class SettingsFragment : Fragment() {
 			viewModel.sampleRate.value!!,
 			viewModel.bitRate.value!!
 		)
-		binding.avgFileSize.text =
-			getString(
-				R.string.avg_file_size,
-				format,
-				channel,
-				sampleRate,
-				bitRate,
-				fileSize
-			)
+		binding.avgFileSize.text = getString(
+			R.string.avg_file_size,
+			format,
+			channel,
+			sampleRate,
+			bitRate,
+			fileSize
+		)
 	}
 
 	private fun updateOutputFormat() {
@@ -166,10 +160,7 @@ class SettingsFragment : Fragment() {
 	}
 
 	private fun getSize(
-		isPcm: Boolean,
-		channel: Int,
-		sampleRate: Int,
-		bitRate: Int
+		isPcm: Boolean, channel: Int, sampleRate: Int, bitRate: Int
 	): String {
 		val size: Int = if (isPcm) 60 * 16 * channel * sampleRate
 		else 60 * bitRate * 1000
@@ -206,17 +197,17 @@ class SettingsFragment : Fragment() {
 			viewModel.setChannel(1)
 			viewModel.setBitRate(12)
 		}
-		if (viewModel.audioCodec.value == 2)
-			viewModel.setSampleRate(8000)
-		else if (viewModel.audioCodec.value == 3)
-			viewModel.setSampleRate(16000)
+		if (viewModel.audioCodec.value == 2) viewModel.setSampleRate(8000)
+		else if (viewModel.audioCodec.value == 3) viewModel.setSampleRate(16000)
 	}
 
 	private fun updateConfigOnChannelSelected() {
-		if (binding.channelRadio.checkedRadioButtonId == R.id.mono)
-			viewModel.setChannel(1)
-		else if (binding.channelRadio.checkedRadioButtonId == R.id.stereo)
-			viewModel.setChannel(2)
+		if (binding.channelRadio.checkedRadioButtonId == R.id.mono) viewModel.setChannel(
+			1
+		)
+		else if (binding.channelRadio.checkedRadioButtonId == R.id.stereo) viewModel.setChannel(
+			2
+		)
 	}
 
 	private fun updateConfigOnSampleRateSelected() {

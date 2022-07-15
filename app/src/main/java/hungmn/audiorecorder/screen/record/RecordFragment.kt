@@ -34,7 +34,6 @@ private const val PM_PERM_GRANTED = PackageManager.PERMISSION_GRANTED
 //private const val WAV = "Not yet"
 private const val M4A = MediaRecorder.OutputFormat.MPEG_4
 private const val THREE_GP = MediaRecorder.OutputFormat.THREE_GPP
-//private const val WEBM = MediaRecorder.OutputFormat.WEBM
 //private const val OGG = MediaRecorder.OutputFormat.OGG
 
 /** Define codecs */
@@ -42,7 +41,6 @@ private const val THREE_GP = MediaRecorder.OutputFormat.THREE_GPP
 private const val AAC = MediaRecorder.AudioEncoder.AAC
 private const val AMR_NB = MediaRecorder.AudioEncoder.AMR_NB
 private const val AMR_WB = MediaRecorder.AudioEncoder.AMR_WB
-//private const val VORBIS = MediaRecorder.AudioEncoder.VORBIS
 //private const val OPUS = MediaRecorder.AudioEncoder.OPUS
 
 class RecordFragment : Fragment() {
@@ -64,10 +62,7 @@ class RecordFragment : Fragment() {
 
 		/** View & Data Binding + declare ViewModel */
 		binding = DataBindingUtil.inflate(
-			inflater,
-			R.layout.fragment_record,
-			container,
-			false
+			inflater, R.layout.fragment_record, container, false
 		)
 		viewModel = ViewModelProvider(this)[RecordViewModel::class.java]
 
@@ -95,8 +90,9 @@ class RecordFragment : Fragment() {
 						viewModel.sampleRate.value!!,
 						viewModel.bitRate.value!!
 					)
-				} else Toast.makeText(context, "No permission", Toast.LENGTH_SHORT)
-					.show()
+				} else Toast.makeText(
+					context, "No permission", Toast.LENGTH_SHORT
+				).show()
 			}
 		}
 
@@ -120,9 +116,7 @@ class RecordFragment : Fragment() {
 	/** Announce when isRecording */
 	private fun announceIsRecord() {
 		Toast.makeText(
-			requireContext(),
-			"Stop recording first!",
-			Toast.LENGTH_SHORT
+			requireContext(), "Stop recording first!", Toast.LENGTH_SHORT
 		).show()
 	}
 
@@ -133,15 +127,15 @@ class RecordFragment : Fragment() {
 	}
 
 	/** Change boolean to true after perm granted */
+	@Deprecated("Outdated on new Android version")
 	override fun onRequestPermissionsResult(
-		requestCode: Int,
-		permissions: Array<out String>,
-		grantResults: IntArray
+		requestCode: Int, permissions: Array<out String>, grantResults: IntArray
 	) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 		// super.registerForActivityResult()
-		if (requestCode == 101 && grantResults[0] == PM_PERM_GRANTED)
+		if (requestCode == 101 && grantResults[0] == PM_PERM_GRANTED) {
 			viewModel.onPermAllowed()
+		}
 	}
 
 	/** Stop recording */
@@ -165,10 +159,7 @@ class RecordFragment : Fragment() {
 
 	/** Start recording */
 	private fun startRecording(
-		codec: Int,
-		channel: Int,
-		sampleRate: Int,
-		bitRate: Int
+		codec: Int, channel: Int, sampleRate: Int, bitRate: Int
 	) {
 
 		// Params for recording preset
@@ -197,11 +188,6 @@ class RecordFragment : Fragment() {
 				recFormat = THREE_GP
 				ext = ".3gp"
 			}
-//			4 -> {
-//				recCodec = VORBIS
-//				recFormat = WEBM
-//				ext = ".webm"
-//			}
 //			5 -> {
 //				recCodec = OPUS
 //				recFormat = OGG
@@ -269,13 +255,9 @@ class RecordFragment : Fragment() {
 	private fun checkPerm(): Boolean {
 
 		if (ActivityCompat.checkSelfPermission(
-				requireContext(),
-				REC_PERM
-			) != PM_PERM_GRANTED
-			||
-			ActivityCompat.checkSelfPermission(
-				requireContext(),
-				WRITE_PERM
+				requireContext(), REC_PERM
+			) != PM_PERM_GRANTED || ActivityCompat.checkSelfPermission(
+				requireContext(), WRITE_PERM
 			) != PM_PERM_GRANTED
 		) {
 			requestPermissions(arrayOf(REC_PERM, WRITE_PERM), 101)

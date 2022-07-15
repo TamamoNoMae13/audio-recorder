@@ -6,13 +6,13 @@ plugins {
 }
 
 android {
-	compileSdk 32
-	buildToolsVersion '33.0.0 rc2'
+    compileSdk 33
+    buildToolsVersion '33.0.0'
 
 	defaultConfig {
 		applicationId "hungmn.audiorecorder"
-		minSdkVersion 24
-		targetSdkVersion 32
+		minSdkVersion 21
+		targetSdkVersion 33
 		versionCode 1
 		versionName "1.0"
 
@@ -39,7 +39,7 @@ android {
 }
 
 dependencies {
-	implementation "org.jetbrains.kotlin:kotlin-stdlib:1.6.21"
+	implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.7.10'
 	implementation 'androidx.core:core-ktx:1.8.0'
 	implementation 'androidx.appcompat:appcompat:1.4.2'
 	implementation 'com.google.android.material:material:1.6.1'
