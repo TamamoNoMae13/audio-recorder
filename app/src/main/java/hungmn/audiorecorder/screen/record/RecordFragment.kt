@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import hungmn.audiorecorder.R
 import hungmn.audiorecorder.databinding.FragmentRecordBinding
+import hungmn.audiorecorder.Constant.*
 
 //import java.io.File
 import java.io.IOException
@@ -34,7 +35,7 @@ private const val PM_PERM_GRANTED = PackageManager.PERMISSION_GRANTED
 //private const val WAV = "Not yet"
 private const val M4A = MediaRecorder.OutputFormat.MPEG_4
 private const val THREE_GP = MediaRecorder.OutputFormat.THREE_GPP
-//private const val OGG = MediaRecorder.OutputFormat.OGG
+//private const val OPUS = MediaRecorder.OutputFormat.OGG
 
 /** Define codecs */
 //private const val WAV = "Not yet"
@@ -159,7 +160,7 @@ class RecordFragment : Fragment() {
 
 	/** Start recording */
 	private fun startRecording(
-		codec: Int, channel: Int, sampleRate: Int, bitRate: Int
+		codec: Codec, channel: Channel, sampleRate: SampleRate, bitRate: KBitRate
 	) {
 
 		// Params for recording preset
@@ -169,26 +170,26 @@ class RecordFragment : Fragment() {
 
 		// Set preset from indices in radios
 		when (codec) {
-//			0 -> {
+//			Codec.PCM -> {
 //				recCodec = PCM_16BIT
 //				ext = ".wav"
 //			}
-			1 -> {
+			Codec.AAC -> {
 				recCodec = AAC
 				recFormat = M4A
 				ext = ".m4a"
 			}
-			2 -> {
+			Codec.AMR_NB -> {
 				recCodec = AMR_NB
 				recFormat = THREE_GP
 				ext = ".3gp"
 			}
-			3 -> {
+			Codec.AMR_WB -> {
 				recCodec = AMR_WB
 				recFormat = THREE_GP
 				ext = ".3gp"
 			}
-//			5 -> {
+//			Codec.OPUS -> {
 //				recCodec = OPUS
 //				recFormat = OGG
 //				ext = ".ogg"
@@ -200,8 +201,7 @@ class RecordFragment : Fragment() {
 			}
 		}
 
-		val sample: Int = if (sampleRate > 48000) 48000
-		else sampleRate
+		val sample: Int = sampleRate.sampleRate
 
 		// Start timer from 0
 		binding.recordTimer.base = SystemClock.elapsedRealtime()
@@ -233,9 +233,9 @@ class RecordFragment : Fragment() {
 		mr!!.setAudioEncoder(recCodec)
 
 		if (recFormat != THREE_GP) {
-			mr!!.setAudioChannels(channel)
+			mr!!.setAudioChannels(channel.channel)
 			mr!!.setAudioSamplingRate(sample)
-			mr!!.setAudioEncodingBitRate(bitRate * 1000)
+			mr!!.setAudioEncodingBitRate(bitRate.kBitRate)
 		}
 		mr!!.setOutputFile("$recPath/$recFile")
 
@@ -254,11 +254,8 @@ class RecordFragment : Fragment() {
 	/** Checking Record and Write permissions */
 	private fun checkPerm(): Boolean {
 
-		if (ActivityCompat.checkSelfPermission(
-				requireContext(), REC_PERM
-			) != PM_PERM_GRANTED || ActivityCompat.checkSelfPermission(
-				requireContext(), WRITE_PERM
-			) != PM_PERM_GRANTED
+		if (ActivityCompat.checkSelfPermission(requireContext(), REC_PERM) != PM_PERM_GRANTED ||
+			ActivityCompat.checkSelfPermission(requireContext(), WRITE_PERM) != PM_PERM_GRANTED
 		) {
 			requestPermissions(arrayOf(REC_PERM, WRITE_PERM), 101)
 			return false

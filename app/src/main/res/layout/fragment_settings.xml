@@ -33,7 +33,6 @@
 			android:layout_marginEnd="8dp"
 			android:fontFamily="@font/source_sans_pro"
 			android:text="@string/aac_desc"
-			android:textColor="@color/black"
 			android:textSize="18sp"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintStart_toStartOf="parent"
@@ -125,15 +124,9 @@
 						android:text="@string/amr_wb" />
 
 					<RadioButton
-						android:id="@+id/vorbis_btn"
-						style="@style/buttonStyle"
-						android:text="@string/vorbis" />
-
-					<RadioButton
 						android:id="@+id/opus_btn"
 						style="@style/buttonStyle"
-						android:text="@string/opus"
-						android:visibility="gone" />
+						android:text="@string/opus" />
 				</RadioGroup>
 
 				<TextView
@@ -216,16 +209,6 @@
 						android:id="@+id/sample_48kHz"
 						style="@style/buttonStyle"
 						android:text="@string/forty_eightKHz" />
-
-					<RadioButton
-						android:id="@+id/sample_88kHz"
-						style="@style/buttonStyle"
-						android:text="@string/eighty_eightKHz" />
-
-					<RadioButton
-						android:id="@+id/sample_96kHz"
-						style="@style/buttonStyle"
-						android:text="@string/ninety_sixKHz" />
 				</RadioGroup>
 
 				<TextView
@@ -279,36 +262,6 @@
 					app:layout_constraintTop_toBottomOf="@+id/bitrate_header">
 
 					<RadioButton
-						android:id="@+id/bit_32kbps"
-						style="@style/buttonStyle"
-						android:text="@string/thirty_twoKHz"
-						android:visibility="gone" />
-
-					<RadioButton
-						android:id="@+id/bit_48kbps"
-						style="@style/buttonStyle"
-						android:text="@string/forty_eightKHz"
-						android:visibility="gone" />
-
-					<RadioButton
-						android:id="@+id/bit_64kbps"
-						style="@style/buttonStyle"
-						android:text="@string/sixty_four_kbps"
-						android:visibility="gone" />
-
-					<RadioButton
-						android:id="@+id/bit_96kbps"
-						style="@style/buttonStyle"
-						android:text="@string/ninety_six_kbps"
-						android:visibility="gone" />
-
-					<RadioButton
-						android:id="@+id/bit_112kbps"
-						style="@style/buttonStyle"
-						android:text="@string/hundred_twelve_kbps"
-						android:visibility="gone" />
-
-					<RadioButton
 						android:id="@+id/bit_128kbps"
 						style="@style/buttonStyle"
 						android:checked="true"
@@ -333,12 +286,6 @@
 						android:id="@+id/bit_256kbps"
 						style="@style/buttonStyle"
 						android:text="@string/two_hundred_fifty_six_kbps" />
-
-					<RadioButton
-						android:id="@+id/bit_510kbps"
-						style="@style/buttonStyle"
-						android:text="@string/five_hundred_eleven_kbps"
-						android:visibility="gone" />
 				</RadioGroup>
 			</androidx.constraintlayout.widget.ConstraintLayout>
 		</ScrollView>

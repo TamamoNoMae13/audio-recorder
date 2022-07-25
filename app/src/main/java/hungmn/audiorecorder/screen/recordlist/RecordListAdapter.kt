@@ -12,7 +12,7 @@ import java.io.File
 
 class RecordListAdapter(
 	private val recordFiles: Array<File>,
-	private val onItemListClick: OnItemListClick
+	private val onItemClick: OnItemClick
 ) : RecyclerView.Adapter<RecordListViewHolder>() {
 	/** Declare related components */
 	private var timeAgo: TimeAgo? = null
@@ -43,24 +43,33 @@ class RecordListAdapter(
 	}
 
 	inner class RecordListViewHolder(itemView: View) :
-		RecyclerView.ViewHolder(itemView), View.OnClickListener {
+		RecyclerView.ViewHolder(itemView), View.OnClickListener, View.OnLongClickListener {
 		/** Define Views */
 //        var listImage: ImageView = itemView.findViewById(R.id.list_image_view)
 		var listTitle: TextView = itemView.findViewById(R.id.list_title)
 		var listDate: TextView = itemView.findViewById(R.id.list_date)
 
 		override fun onClick(v: View) {
-			onItemListClick.onItemListClick(
+			onItemClick.onItemClick(
 				recordFiles[adapterPosition], adapterPosition
 			)
 		}
 
+		override fun onLongClick(v: View): Boolean {
+			onItemClick.onItemLongClick(
+				recordFiles[adapterPosition], adapterPosition
+			)
+			return true
+		}
+
 		init {
 			itemView.setOnClickListener(this)
+			itemView.setOnLongClickListener(this)
 		}
 	}
 
-	interface OnItemListClick : AdapterView.OnItemClickListener {
-		fun onItemListClick(file: File, position: Int)
+	interface OnItemClick : AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
+		fun onItemClick(file: File, position: Int)
+		fun onItemLongClick(file: File, position: Int)
 	}
 }

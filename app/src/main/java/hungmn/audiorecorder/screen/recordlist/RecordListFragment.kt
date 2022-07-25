@@ -22,7 +22,7 @@ import java.io.IOException
 //private const val READ_PERM = Manifest.permission.READ_EXTERNAL_STORAGE
 //private const val PM_PERM_GRANTED = PackageManager.PERMISSION_GRANTED
 
-class RecordListFragment : Fragment(), RecordListAdapter.OnItemListClick {
+class RecordListFragment : Fragment(), RecordListAdapter.OnItemClick {
 
 	/** Mentioning related components */
 	private lateinit var binding: FragmentRecordListBinding
@@ -32,7 +32,7 @@ class RecordListFragment : Fragment(), RecordListAdapter.OnItemListClick {
 	private lateinit var recordListAdapter: RecordListAdapter
 	private var recordFiles: Array<File>? = null
 	private var mp: MediaPlayer? = null
-	private var fileToPlay: File? = null
+	private var fileToAccess: File? = null
 	private var seekbarHandler: Handler? = null
 	private var updateSeekbar: Runnable? = null
 
@@ -68,7 +68,7 @@ class RecordListFragment : Fragment(), RecordListAdapter.OnItemListClick {
 		// Play Button
 		binding.playButton.setOnClickListener {
 			if (viewModel.isPlaying.value == true) pauseAudio()
-			else if (fileToPlay != null) resumeAudio()
+			else if (fileToAccess != null) resumeAudio()
 		}
 		// Rewind Button
 		binding.rewButton.setOnClickListener {}
@@ -95,14 +95,20 @@ class RecordListFragment : Fragment(), RecordListAdapter.OnItemListClick {
 	}
 
 	/** When clicking one of the records */
-	override fun onItemListClick(file: File, position: Int) {
-		fileToPlay = file
+	override fun onItemClick(file: File, position: Int) {
+		fileToAccess = file
 		if (viewModel.isPlaying.value == true) {
 			stopAudio()
-			playAudio(fileToPlay)
+			playAudio(fileToAccess)
 		} else {
-			playAudio(fileToPlay)
+			playAudio(fileToAccess)
 		}
+	}
+
+	/** When long clicking one of the records */
+	override fun onItemLongClick(file: File, position: Int) {
+		fileToAccess = file
+		// TODO
 	}
 
 	/** Play/Pause/Resume/Stop audio func */
@@ -182,6 +188,15 @@ class RecordListFragment : Fragment(), RecordListAdapter.OnItemListClick {
 	override fun onItemClick(
 		p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long
 	) {
+	}
+
+	override fun onItemLongClick(
+		p0: AdapterView<*>?,
+		p1: View?,
+		p2: Int,
+		p3: Long
+	): Boolean {
+		return true
 	}
 
 	/** Lifecycle methods */

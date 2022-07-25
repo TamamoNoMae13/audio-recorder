@@ -12,16 +12,16 @@
 		tools:layout="@layout/fragment_record">
 		<argument
 			android:name="codec"
-			app:argType="integer" />
+			app:argType="hungmn.audiorecorder.Constant.Codec" />
 		<argument
 			android:name="channel"
-			app:argType="integer" />
+			app:argType="hungmn.audiorecorder.Constant.Channel" />
 		<argument
 			android:name="sampleRate"
-			app:argType="integer" />
+			app:argType="hungmn.audiorecorder.Constant.SampleRate" />
 		<argument
 			android:name="bitRate"
-			app:argType="integer" />
+			app:argType="hungmn.audiorecorder.Constant.KBitRate" />
 		<action
 			android:id="@+id/action_recordFragment_to_recordListFragment"
 			app:destination="@id/recordListFragment" />
@@ -39,7 +39,8 @@
 	<fragment
 		android:id="@+id/settingsFragment"
 		android:name="hungmn.audiorecorder.screen.settings.SettingsFragment"
-		android:label="SettingsFragment">
+		android:label="SettingsFragment"
+		tools:layout="@layout/fragment_settings">
 		<action
 			android:id="@+id/action_settingsFragment_to_recordFragment"
 			app:destination="@id/recordFragment" />
