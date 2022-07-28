@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="guideline">Bấm vào cái Mic
+        \nđể bắt đầu ghi âm!</string>
+
+	<string name="settingBtn">Cài đặt</string>
+	<string name="middleBtn">Ghi/Dừng</string>
+	<string name="recordList">DS ghi âm</string>
+	<string name="saveBtn">Lưu</string>
+</resources>
