@@ -7,4 +7,8 @@
 	<string name="middleBtn">Ghi/Dừng</string>
 	<string name="recordList">DS ghi âm</string>
 	<string name="saveBtn">Lưu</string>
+
+	<string name="confirm_title">Bạn chắc chưa?</string>
+	<string name="rename">Đổi tên</string>
+	<string name="cancel">Huỷ</string>
 </resources>

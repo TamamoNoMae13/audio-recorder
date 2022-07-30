@@ -59,7 +59,7 @@ class RecordListFragment : Fragment(), RecordListAdapter.OnItemListClick {
 		val directory = File(path)
 		recordFiles = directory.listFiles()
 
-		recordListAdapter = RecordListAdapter(recordFiles!!, this)
+		recordListAdapter = RecordListAdapter(requireActivity(), recordFiles!!, this)
 		binding.recordListFrag.setHasFixedSize(true)
 		binding.recordListFrag.layoutManager = LinearLayoutManager(context)
 		binding.recordListFrag.adapter = recordListAdapter

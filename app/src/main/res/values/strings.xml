@@ -21,6 +21,10 @@
 
 	<string name="filename">File Name</string>
 
+	<string name="confirm_title">Are you sure?</string>
+	<string name="rename">Rename</string>
+	<string name="cancel">Cancel</string>
+
 	<string name="record_start_announce">Recording, filename: %1$s</string>
 	<string name="record_stop_announce">Recording stopped, file saved: %1$s</string>
 
